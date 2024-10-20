@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEÓFILO ROBERTO POTES</title>
+    <link rel="icon" href="{% static 'icons/ineterpo.ico' %}">
+    <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <img src="{% static 'icons/ineterpo.png' %}" alt="Logo" class="logo">
+            <div class="header-title">
+                <h1 class="title-principal">INSTITUCIÓN EDUCATIVA TÉCNICA COMERCIAL TEÓFILO ROBERTO POTES</h1>
+                <h2 class="comment">"Un lugar de conocimiento y formación para el futuro"</h2>
+            </div>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="{% url 'principal' %}" {% if request.resolver_match.url_name == 'principal' %}class="active"{% endif %}><img src="{% static 'icons/house.svg' %}" width="20" class="home"></a></li>
+                <li><a href="{% url 'titulo-imagen' modelo='Noticias' %}" {% if request.resolver_match.kwargs.modelo == 'Noticias' %}class="active"{% endif %}>NOTICIAS</a></li>
+                <li><a href="{% url 'eventos' %}" {% if request.resolver_match.url_name == 'eventos' or request.resolver_match.kwargs.modelo == 'Eventos'%}class="active"{% endif %}>EVENTOS</a></li>
+                <li><a href="{% url 'titulo-imagen' modelo='Implementaciones' %}" {% if request.resolver_match.kwargs.modelo == 'Implementaciones' %}class="active"{% endif %}>IMPLEMENTACIONES</a></li>
+                <li><a href="{% url 'titulo-imagen' modelo='ComunidadEducativa' %}" {% if request.resolver_match.kwargs.modelo == 'ComunidadEducativa' %}class="active"{% endif %}>COMUNIDAD EDUCATIVA</a></li>
+                <li><a href="{% url 'titulo-imagen' modelo='Institucional' %}" {% if request.resolver_match.kwargs.modelo == 'Institucional' %}class="active"{% endif %}>INSTITUCIONAL</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="separator"></div>
+  
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+        
+    <footer>    
+        <div class="footer-content">
+            <div class="footer-logo-container">
+                <img src="{% static 'icons/ineterpo.png' %}" alt="Logo" class="footer-logo">
+            </div>
+            <div class="contact-info">
+                <h2><img src="{% static 'icons/phone.svg'%}" width="20"> Contacto</h2>
+                <ul>
+                    <li><span class="contact-label">Teléfono:</span> <span class="contact-value">032-2979105</span></li>
+                    <li><span class="contact-label">Correo:</span> <span class="contact-value"><a href="mailto:ineterpo@hotmail.com">ineterpo@hotmail.com</a></span></li>
+                    <li><span class="contact-label">Dirección:</span> <span class="contact-value">KR 47 No 5 - 17, BUENAVENTURA, CO</span></li>
+                </ul>
+            </div>
+            <div class="footer-alianzas">
+                <h2><img src="{% static 'icons/alianza.svg' %}" width="28"> Alianzas</h2>
+                <div class="alianzas-carousel">
+                    <div class="alianzas-logos">
+                        <a href="https://www.buenaventura.gov.co/" target="_blank" class="alianza-link">
+                            <img src="{% static 'images/alianzas/buenaventura.png'%}" alt="Alcaldia de Buenaventura" class="alianza-logo">
+                        </a>
+                        <a href="https://www.mineducacion.gov.co/portal/" target="_blank" class="alianza-link">
+                            <img src="{% static 'images/alianzas/gobierno.png'%}" alt="GOV" class="alianza-logo">
+                        </a>
+                        <a href="https://www.icfes.gov.co/" target="_blank" class="alianza-link">
+                            <img src="{% static 'images/alianzas/icfes.png'%}" alt="ICFES" class="alianza-logo">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; {% now "Y" %} INSTITUCIÓN EDUCATIVA TÉCNICA COMERCIAL TEÓFILO ROBERTO POTES. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <a href="/admin" class="floating-icon" target="_blank" aria-label="Administrador">
+        <img src="{% static 'icons/ineterpo.ico' %}" alt="">
+    </a>
+    <script src="{% static 'js/alianzas.js' %}"></script>
+</body>
+</html>

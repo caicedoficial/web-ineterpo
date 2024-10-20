@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="objeto-detalles">
+    <link rel="stylesheet" href="{% static 'styles/detalle-objeto.css' %}">
+    <div class="cabecera">
+        <h1 class="objeto-titulo">{{ objeto.titulo }}</h1>
+        <i class="objeto-fecha">{{ objeto.fecha }} </i>
+    </div>
+    
+    {% if objeto.descripcion %}
+    <div class="objeto-descripcion">
+        <p class="objeto-descripcion__texto">{{ objeto.descripcion }}</p>
+    </div>
+    {% endif %}
+    
+    {% if objeto.imagenes %}
+    <div class="objeto-galeria">
+        <div class="objeto-galeria__carrusel">
+            <button class="carrusel-boton carrusel-boton--izquierda">&lt;</button>
+            <div class="objeto-galeria__contenedor">
+                {% for imagen_url in objeto.imagenes %}
+                <div class="objeto-galeria__item">
+                    <img src="{{ imagen_url }}" class="objeto-galeria__imagen" alt="Imagen de {{ objeto.titulo }}">
+                </div>
+                {% endfor %}
+            </div>
+            <button class="carrusel-boton carrusel-boton--derecha">&gt;</button>
+        </div>
+    </div>
+    {% else %}
+    <p class="objeto-sin-imagenes">No hay imágenes disponibles para {{ objeto.tipo }}.</p>
+    {% endif %}
+</div>
+
+<script src="{% static 'js/carrusel.js' %}"></script>
+{% endblock %}

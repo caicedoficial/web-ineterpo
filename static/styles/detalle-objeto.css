@@ -1,0 +1,134 @@
+.objeto-detalles {
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.objeto-titulo {
+    font-size: 2em;
+    color: #333;
+    font-weight: 600;
+}
+
+.objeto-descripcion__texto {
+    font-size: 1.1em;
+    line-height: 1.6;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.objeto-galeria {
+    background-color: black;
+    position: relative;
+    overflow: hidden;
+    width: 800px;
+    height: 600px;
+    border-radius: 10px;
+    margin: 50px auto;
+}
+
+.objeto-galeria__carrusel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.objeto-galeria__contenedor {
+    display: flex;
+    transition: transform 0.5s ease;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 100%;
+    align-items: center;
+}
+
+.objeto-galeria__item {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+}
+
+.objeto-galeria__imagen {
+    width: 100%;
+    height: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+.objeto-sin-imagenes {
+    font-style: italic;
+    color: #666;
+    text-align: center;
+}
+
+.carrusel-boton {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    border: none;
+    background-color: forestgreen;
+    color: #fff;
+    font-size: 1.2em;
+    border-radius: 5px;
+}
+
+.carrusel-boton:hover {
+    cursor: pointer;
+    border: 1px solid forestgreen;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 10px forestgreen;
+}
+
+.carrusel-boton:active {
+    transform: translateY(-50%) scale(0.9);
+    box-shadow: 0 0 5px forestgreen;
+    color: forestgreen;
+    border: 1px solid forestgreen;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.carrusel-boton--izquierda {
+    left: 10px;
+}
+
+.carrusel-boton--derecha {
+    right: 10px;
+}
+
+@media (max-width: 768px) {
+    .objeto-galeria__item {
+        flex: 0 0 calc(50% - 15px);
+        max-width: calc(50% - 15px);
+    }
+}
+
+@media (max-width: 480px) {
+    .objeto-galeria__item {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+.imagen-cargando {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+}

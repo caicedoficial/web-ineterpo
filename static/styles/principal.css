@@ -1,0 +1,110 @@
+/* Contenedor principal */
+.principal-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  content-visibility: auto;
+  contain-intrinsic-size: 1000px; /* Ajusta este valor según el contenido promedio */
+}
+
+/* Contenedor de la cuadrícula */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 30px;
+  padding: 30px;
+}
+
+/* Bloques dentro de la cuadrícula */
+.block {
+  text-align: left;
+  padding: 30px;
+  border-radius: 12px;
+  background-color: #f0f8f5;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  content-visibility: auto;
+  contain-intrinsic-size: 300px; /* Ajusta según el tamaño promedio de cada bloque */
+  border: 2px solid #a0d8c8;
+}
+
+.block:hover {
+  transform: translateY(-8px);
+  background-color: pink;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.block:hover .subtitle {
+  color: #ffffff;
+}
+
+.block:hover .subtitle img {
+  filter: brightness(0) invert(1);
+}
+
+.block:hover .block-text {
+  text-shadow: 0.3px 0.3px 0.3px rgba(0, 0, 0, 5);
+}
+
+/* Alinear imagen con el texto en los subtítulos */
+.subtitle img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  vertical-align: middle;
+  filter: brightness(0) invert(0);
+}
+
+/* Estilos para los subtítulos */
+.subtitle {
+  display: flex;
+  align-items: center;
+  font-size: 1.6em;
+  margin-bottom: 20px;
+  color: #3a3a3a;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilos para los párrafos dentro de los bloques */
+.block-text {
+  line-height: 1.8;
+  color: #444;
+  font-weight: 400;
+  font-size: 1.1em;
+}
+
+/* Estilos para los enlaces */
+.manual-link, .more-info-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #006f25;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.manual-link:hover, .more-info-link:hover {
+  color: #0f004d;
+  text-decoration: underline;
+}
+
+/* Media query para dispositivos móviles */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .block {
+    padding: 25px;
+    contain-intrinsic-size: 250px; /* Ajusta para dispositivos móviles */
+  }
+
+  .subtitle {
+    font-size: 1.4em;
+  }
+
+  .block-text {
+    font-size: 1em;
+  }
+}
