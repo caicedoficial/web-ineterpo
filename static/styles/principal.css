@@ -1,16 +1,7 @@
-/* Contenedor principal */
-.principal-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 2rem;
-  content-visibility: auto;
-  contain-intrinsic-size: 1000px; /* Ajusta este valor según el contenido promedio */
-}
-
 /* Contenedor de la cuadrícula */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   gap: 30px;
   padding: 30px;
 }

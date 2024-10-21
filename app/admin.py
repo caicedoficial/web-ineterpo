@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.contenttypes.admin import GenericTabularInline
-from .models import Eventos, Implementaciones, ComunidadEducativa, Imagenes, Noticias, Institucional
+from .models import Eventos, Implementaciones, Comunidad, Imagenes, Noticias, Institucional
 
 class ImagenAdmin(GenericTabularInline):
     model = Imagenes
@@ -37,7 +37,7 @@ class InstitucionalAdmin(BaseAdmin):
     pass
 
 admin.site.register(Eventos, EventosAdmin)
-admin.site.register(ComunidadEducativa, ComunidadAdmin)
+admin.site.register(Comunidad, ComunidadAdmin)
 admin.site.register(Implementaciones, ImplementacionesAdmin)
 admin.site.register(Noticias, NoticiasAdmin)
 admin.site.register(Institucional, InstitucionalAdmin)

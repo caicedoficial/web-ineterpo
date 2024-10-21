@@ -25,7 +25,7 @@
                 <li><a href="{% url 'titulo-imagen' modelo='Noticias' %}" {% if request.resolver_match.kwargs.modelo == 'Noticias' %}class="active"{% endif %}>NOTICIAS</a></li>
                 <li><a href="{% url 'eventos' %}" {% if request.resolver_match.url_name == 'eventos' or request.resolver_match.kwargs.modelo == 'Eventos'%}class="active"{% endif %}>EVENTOS</a></li>
                 <li><a href="{% url 'titulo-imagen' modelo='Implementaciones' %}" {% if request.resolver_match.kwargs.modelo == 'Implementaciones' %}class="active"{% endif %}>IMPLEMENTACIONES</a></li>
-                <li><a href="{% url 'titulo-imagen' modelo='ComunidadEducativa' %}" {% if request.resolver_match.kwargs.modelo == 'ComunidadEducativa' %}class="active"{% endif %}>COMUNIDAD EDUCATIVA</a></li>
+                <li><a href="{% url 'titulo-imagen' modelo='Comunidad' %}" {% if request.resolver_match.kwargs.modelo == 'Comunidad' %}class="active"{% endif %}>COMUNIDAD EDUCATIVA</a></li>
                 <li><a href="{% url 'titulo-imagen' modelo='Institucional' %}" {% if request.resolver_match.kwargs.modelo == 'Institucional' %}class="active"{% endif %}>INSTITUCIONAL</a></li>
             </ul>
         </nav>

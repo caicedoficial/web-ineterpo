@@ -2,52 +2,49 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'styles/eventos.css' %}">
-
-
-<section class="eventos">
 <h1 class="title">EVENTOS</h1>
-    <div class="eventos__contenedor">
-        <article class="evento">
-            <a class="evento__enlace" href="{% url 'titulo-imagen-tipo' modelo='Eventos' tipo='Día del Idioma' %}">
-                <img class="evento__imagen" src="{% static 'images/eventos/idioma.jpeg' %}" alt="Día del Idioma">
-                <h2 class="evento__nombre">Día del Idioma</h2>
+<section class="elements-container">
+    <div class="elementos">
+        <article class="elemento">
+            <a class="elemento-link" href="{% url 'titulo-imagen-tipo' modelo='Eventos' tipo='Día del Idioma' %}">
+                <img class="elemento-imagen" src="{% static 'images/eventos/idioma.jpeg' %}" alt="Día del Idioma">
+                <h2 class="elemento-name">Día del Idioma</h2>
             </a>
         </article>
-        <article class="evento">
-            <a class="evento__enlace" href="{% url 'titulo-imagen-tipo' modelo='Eventos' tipo='Día del Estudiante' %}">
-                <img class="evento__imagen" src="{% static 'images/eventos/estudiantes.jpeg' %}" alt="Día del Estudiante">
-                <h2 class="evento__nombre">Día del Estudiante</h2>
+        <article class="elemento">
+            <a class="elemento-link" href="{% url 'titulo-imagen-tipo' modelo='Eventos' tipo='Día del Estudiante' %}">
+                <img class="elemento-imagen" src="{% static 'images/eventos/estudiantes.jpeg' %}" alt="Día del Estudiante">
+                <h2 class="elemento-name">Día del Estudiante</h2>
             </a>
         </article>
-        <article class="evento">
-            <a class="evento__enlace" href="{% url 'titulo-imagen-tipo' modelo='Eventos' tipo='Semana Deportiva' %}">
-                <img class="evento__imagen" src="{% static 'images/eventos/semana-deportiva.jpeg' %}" alt="Semana Deportiva">
-                <h2 class="evento__nombre">Semana Deportiva</h2>
+        <article class="elemento">
+            <a class="elemento-link" href="{% url 'titulo-imagen-tipo' modelo='Eventos' tipo='Semana Deportiva' %}">
+                <img class="elemento-imagen" src="{% static 'images/eventos/semana-deportiva.jpeg' %}" alt="Semana Deportiva">
+                <h2 class="elemento-name">Semana Deportiva</h2>
             </a>
         </article>
-        <article class="evento">
-            <a class="evento__enlace" href="{% url 'titulo-imagen-tipo' modelo='Eventos' tipo='English Day' %}">
-                <img class="evento__imagen" src="{% static 'images/eventos/english.jpeg' %}" alt="English Day">
-                <h2 class="evento__nombre">English Day</h2>
+        <article class="elemento">
+            <a class="elemento-link" href="{% url 'titulo-imagen-tipo' modelo='Eventos' tipo='English Day' %}">
+                <img class="elemento-imagen" src="{% static 'images/eventos/english.jpeg' %}" alt="English Day">
+                <h2 class="elemento-name">English Day</h2>
             </a>
         </article>
-        <article class="evento">
-            <a class="evento__enlace" href="{% url 'titulo-imagen-tipo' modelo='Eventos' tipo='Día del Maestro' %}">
-                <img class="evento__imagen" src="{% static 'images/eventos/maestro.jpeg' %}" alt="Día del Maestro">
-                <h2 class="evento__nombre">Día del Maestro</h2>
+        <article class="elemento">
+            <a class="elemento-link" href="{% url 'titulo-imagen-tipo' modelo='Eventos' tipo='Día del Maestro' %}">
+                <img class="elemento-imagen" src="{% static 'images/eventos/maestro.jpeg' %}" alt="Día del Maestro">
+                <h2 class="elemento-name">Día del Maestro</h2>
             </a>
         </article>
-        <article class="evento">
-            <a class="evento__enlace" href="{% url 'titulo-imagen-tipo' modelo='Eventos' tipo='Afrocolombianidad' %}">
-                <img class="evento__imagen" src="{% static 'images/eventos/afrocolombianidad.jpeg' %}" alt="Afrocolombianidad">
-                <h2 class="evento__nombre">Afrocolombianidad</h2>
+        <article class="elemento">
+            <a class="elemento-link" href="{% url 'titulo-imagen-tipo' modelo='Eventos' tipo='Afrocolombianidad' %}">
+                <img class="elemento-imagen" src="{% static 'images/eventos/afrocolombianidad.jpeg' %}" alt="Afrocolombianidad">
+                <h2 class="elemento-name">Afrocolombianidad</h2>
             </a>
         </article>
-        <article class="evento">
-            <a class="evento__enlace" href="{% url 'titulo-imagen-tipo' modelo='Eventos' tipo='Día de la Secretaria' %}">
-                <img class="evento__imagen" src="{% static 'images/eventos/secretaria.jpeg' %}" alt="Día de la Secretaria">
-                <h2 class="evento__nombre">Día de la Secretaria</h2>
+        <article class="elemento">
+            <a class="elemento-link" href="{% url 'titulo-imagen-tipo' modelo='Eventos' tipo='Día de la Secretaria' %}">
+                <img class="elemento-imagen" src="{% static 'images/eventos/secretaria.jpeg' %}" alt="Día de la Secretaria">
+                <h2 class="elemento-name">Día de la Secretaria</h2>
             </a>
         </article>
     </div>

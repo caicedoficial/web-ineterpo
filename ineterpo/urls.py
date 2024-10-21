@@ -26,7 +26,7 @@ urlpatterns = [
     path('', views.principal, name='principal'),
     path('Eventos/', views.eventos, name='eventos'),
     path('<str:modelo>/', views.titulo_imagen, name='titulo-imagen'),
-    path('<str:modelo>/<int:id>+<str:titulo>/', views.detalle_objeto, name='detalle-objeto'),
+    path('<str:modelo>/element=<int:id>+<str:titulo>', views.detalle_objeto, name='detalle-objeto'),
     path('<str:modelo>/<str:tipo>/', views.titulo_imagen_tipo, name='titulo-imagen-tipo'),
     path('<str:modelo>/<str:tipo>/<int:id>/', views.detalle_objeto_tipo, name='detalle-objeto-tipo'),
     path('ineterpo.ico', RedirectView.as_view(url='/static/icons/ineterpo.ico', permanent=True)),

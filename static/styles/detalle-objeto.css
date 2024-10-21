@@ -59,8 +59,7 @@
 .objeto-galeria__imagen {
     width: 100%;
     height: 100%;
-    height: auto;
-    vertical-align: middle;
+    object-fit: cover;
 }
 
 .objeto-sin-imagenes {
@@ -80,24 +79,21 @@
     background-color: forestgreen;
     color: #fff;
     font-size: 1.2em;
-    border-radius: 5px;
+    border-radius: 50%;
 }
 
 .carrusel-boton:hover {
     cursor: pointer;
-    border: 1px solid forestgreen;
-    border-radius: 5px;
+    border: 1px;
     transition: all 0.3s ease;
     transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 0 10px forestgreen;
 }
 
 .carrusel-boton:active {
     transform: translateY(-50%) scale(0.9);
-    box-shadow: 0 0 5px forestgreen;
+    box-shadow: 0 0 2px forestgreen;
     color: forestgreen;
-    border: 1px solid forestgreen;
-    border-radius: 5px;
+    border: 1px;
     transition: all 0.3s ease;
 }
 

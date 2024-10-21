@@ -2,19 +2,30 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'styles/titulo-imagen.css' %}">
+<h1 class="title">{{ nombre_modelo|title|upper }}</h1>
+<section class="elements-container">
+    <div class="descripciones">
+        {% if nombre_modelo == 'Noticias' %}
+            <p>descripcion noticias</p>
+        {% elif nombre_modelo == 'Implementaciones' %}
+            <p>descripcionimplementacionessdnajdnaskjbnakjbsckasbckabskcaasjdbaskjdbajskbdakjbsdkjabdkjabdkjsbakjdbajksdbkjasbdkjabsdadsadsdasdasdasdadasjdhsakjwdasdjhasjdadajsdkjasdjasjfaskljflaksnflkajsfkajslkfajlkfjdlakmcaklmcoaiwdoqwdjsmacknsacna
+            </p>
+        {% elif nombre_modelo == 'Institucional' %}
+            <p>descripcion institucional</p>
+        {% elif nombre_modelo == 'Comunidad' %}
+            <p>descripcion comunidad</p>
+        {% endif %}
+    </div>
 
-<section class="elementos">
-    <h1 class="title">{{ nombre_modelo|title|upper }}</h1>
-    <div class="container">
+    <div class="elementos">
         {% for objeto in objetos_simplificados %}
-            <article class="item">
+            <article class="elemento">
                 {% if objeto.id %}
-                    <a href="{% url 'detalle-objeto' modelo=nombre_modelo id=objeto.id titulo=objeto.titulo %}" class="link">
+                    <a class="elemento-link" href="{% url 'detalle-objeto' modelo=nombre_modelo id=objeto.id titulo=objeto.titulo|lower|slugify %}" >
                     {% if objeto.primera_imagen %}
-                        <img class="img" src="{{ objeto.primera_imagen }}" alt="{{ objeto.titulo }}">
+                        <img class="elemento-imagen" src="{{ objeto.primera_imagen }}" alt="{{ objeto.titulo }}">
                     {% endif %}
-                        <h2 class="item__title">{{ objeto.titulo }}</h2>
+                        <h2 class="elemento-name">{{ objeto.titulo }}</h2>
                     </a>
                 {% endif %}
             </article>

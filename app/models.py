@@ -65,10 +65,10 @@ class Implementaciones(BaseModel):
         verbose_name = "Implementaciónes"
         verbose_name_plural = "Implementaciones"
 
-class ComunidadEducativa(BaseModel):
+class Comunidad(BaseModel):
     class Meta:
-        verbose_name = "Comunidad Educativa"
-        verbose_name_plural = "Comunidad Educativa" 
+        verbose_name = "Comunidad"
+        verbose_name_plural = "Comunidad" 
 
 class Institucional(BaseModel):
     class Meta:
