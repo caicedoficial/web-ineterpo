@@ -2,8 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="objeto-detalles">
-    <link rel="stylesheet" href="{% static 'styles/detalle-objeto.css' %}">
+<div class="objetos">
     <div class="cabecera">
         <h1 class="objeto-titulo">{{ objeto.titulo }}</h1>
         <i class="objeto-fecha">{{ objeto.fecha }} </i>
@@ -11,18 +10,18 @@
     
     {% if objeto.descripcion %}
     <div class="objeto-descripcion">
-        <p class="objeto-descripcion__texto">{{ objeto.descripcion }}</p>
+        <p class="descripciones">{{ objeto.descripcion }}</p>
     </div>
     {% endif %}
     
     {% if objeto.imagenes %}
-    <div class="objeto-galeria">
-        <div class="objeto-galeria__carrusel">
+    <div class="objeto-imagenes">
+        <div class="objeto-carrusel">
             <button class="carrusel-boton carrusel-boton--izquierda">&lt;</button>
-            <div class="objeto-galeria__contenedor">
+            <div class="objeto-imagenes-contenedor">
                 {% for imagen_url in objeto.imagenes %}
-                <div class="objeto-galeria__item">
-                    <img src="{{ imagen_url }}" class="objeto-galeria__imagen" alt="Imagen de {{ objeto.titulo }}">
+                <div class="objeto-imagen">
+                    <img src="{{ imagen_url }}" class="objeto-carrusel-imagen" alt="Imagen de {{ objeto.titulo }}">
                 </div>
                 {% endfor %}
             </div>

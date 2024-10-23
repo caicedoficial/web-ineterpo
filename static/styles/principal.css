@@ -3,16 +3,16 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   gap: 30px;
-  padding: 30px;
+  padding: 30px
 }
 
 /* Bloques dentro de la cuadrícula */
 .block {
   text-align: left;
   padding: 30px;
-  border-radius: 12px;
-  background-color: #f0f8f5;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
   content-visibility: auto;
   contain-intrinsic-size: 300px; /* Ajusta según el tamaño promedio de cada bloque */
@@ -22,11 +22,12 @@
 .block:hover {
   transform: translateY(-8px);
   background-color: pink;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
 }
 
 .block:hover .subtitle {
   color: #ffffff;
+  text-shadow: none;
 }
 
 .block:hover .subtitle img {
@@ -34,7 +35,7 @@
 }
 
 .block:hover .block-text {
-  text-shadow: 0.3px 0.3px 0.3px rgba(0, 0, 0, 5);
+  text-shadow: 0 0 0.3px rgba(0, 0, 0, 5);
 }
 
 /* Alinear imagen con el texto en los subtítulos */
@@ -51,17 +52,18 @@
   display: flex;
   align-items: center;
   font-size: 1.6em;
-  margin-bottom: 20px;
-  color: #3a3a3a;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+  color: rgb(26, 26, 64);
+  text-shadow: 0px 0px 2px rgba(26, 26, 64, 0.5);
+  letter-spacing: 0.5px;
 }
 
 /* Estilos para los párrafos dentro de los bloques */
 .block-text {
   line-height: 1.8;
-  color: #444;
+  color: #333333;
   font-weight: 400;
-  font-size: 1.1em;
+  font-size: 1.08em;
+  font-family: 'Open Sans', sans-serif;
 }
 
 /* Estilos para los enlaces */

@@ -8,6 +8,12 @@
     <title>TEÓFILO ROBERTO POTES</title>
     <link rel="icon" href="{% static 'icons/ineterpo.ico' %}">
     <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+    <meta name="description" content="Institución Educativa Técnica Comercial Teófilo Roberto Potes, un lugar de conocimiento y formación para el futuro.">
+    <meta name="keywords" content="educación, técnica, comercial, Teófilo Roberto Potes, formación, conocimiento">
+    <link rel="canonical" href="https://www.tu-sitio-web.com/">
+    <meta name="author" content="Institución Educativa Técnica Comercial Teófilo Roberto Potes">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -31,8 +37,6 @@
         </nav>
     </header>
     
-    <div class="separator"></div>
-  
     <main class="container">
         {% block content %}
         {% endblock %}
@@ -52,7 +56,7 @@
                 </ul>
             </div>
             <div class="footer-alianzas">
-                <h2><img src="{% static 'icons/alianza.svg' %}" width="28"> Alianzas</h2>
+                <h2><img src="{% static 'icons/alianza.svg' %}" width="28">Alianzas</h2>
                 <div class="alianzas-carousel">
                     <div class="alianzas-logos">
                         <a href="https://www.buenaventura.gov.co/" target="_blank" class="alianza-link">
@@ -63,6 +67,9 @@
                         </a>
                         <a href="https://www.icfes.gov.co/" target="_blank" class="alianza-link">
                             <img src="{% static 'images/alianzas/icfes.png'%}" alt="ICFES" class="alianza-logo">
+                        </a>
+                        <a href="https://www.univalle.edu.co/" target="_blank" class="alianza-link">
+                            <img src="{% static 'images/alianzas/R.png' %}" alt="UniValle" class="alianza-logo">
                         </a>
                     </div>
                 </div>

@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const contenedor = document.querySelector('.objeto-galeria__contenedor');
+    const contenedor = document.querySelector('.objeto-imagenes-contenedor');
     const botonIzquierda = document.querySelector('.carrusel-boton--izquierda');
     const botonDerecha = document.querySelector('.carrusel-boton--derecha');
     let indiceActual = 0;
-    const imagenes = contenedor.querySelectorAll('.objeto-galeria__item');
+    const imagenes = contenedor.querySelectorAll('.objeto-carrusel-imagen');
     const totalImagenes = imagenes.length;
 
     function actualizarCarrusel() {
