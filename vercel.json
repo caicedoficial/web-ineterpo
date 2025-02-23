@@ -1,0 +1,14 @@
+{
+    "builds": [
+        {
+            "src": "ineterpo/wsgi.py",
+            "use": "@vercel/python"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "ineterpo/wsgi.py"
+        }
+    ]
+}

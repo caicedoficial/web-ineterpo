@@ -1,0 +1,16 @@
+<!-- Primer Noticia Section -->
+{% load static %}
+
+<div class="w-full h-[13rem] md:h-[18rem] lg:h-[22rem]">
+{% if noticia.imagenes %}
+    <img class="w-full h-full object-top object-cover" 
+        src="{{ noticia.imagenes.first.imagen.url }}" 
+        alt="Imagen de la noticia {{ noticia.titulo }}">
+{% endif %}
+</div>
+<small class="absolute bg-primary px-3 py-2 text-white top-0 right-0 lowercase">{{ noticia.formatted_fecha }}</small>
+<div class="grid py-2">
+    <p class="text-[12px] text-red-700 font-sourceLight tracking-wider uppercase">{{ noticia.tipo }}</p>
+    <h1 class="text-[20px] font-plantagenetcherokee truncate font-sourceSemiBold text-black">{{ noticia.titulo }}</h1>
+    <div class="prose line-clamp-2 max-w-none leading-[1.2] font-sourceLight text-black/80">{{ noticia.descripcion|safe }}</div>
+</div>

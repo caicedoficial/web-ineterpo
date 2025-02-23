@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Noticias{% endblock %}
+
+{% block content %}
+<div class="grid gap-y-6 md:gap-y-10 mx-4 mb-8">
+    <section class="flex flex-col px-4 md:pl-8 bg-secundary py-4 max-w-[1280px] mx-auto w-full">
+        <div class="flex items-center justify-center md:justify-normal gap-8">
+            <h1 class="font-sourceBlack text-[50px] md:text-[90px] text-white uppercase">{{ modelo }}</h1> 
+            <img class="w-20 h-20 md:w-28 md:h-28"
+                src="{% static 'icons/header/notice.svg' %}" alt="">
+        </div>
+        <p class="text-white text-lg md:text-xl font-sourceRegular">Conoce los acontecimientos recientes y más importantes del INETERPO con nuestra sección de noticias.</p>
+    </section>
+    <section class="grid grid-cols-2 gap-5 md:gap-y-6 md:gap-x-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        {% for noticia in noticias %}
+            <article class="m-auto relative {% if forloop.first %}col-span-2 row-span-2 w-[19rem] h-[19rem] md:w-[24rem] md:h-[24rem] lg:w-[28rem] lg:h-[28rem]{% else %}col-span-1 row-span-1 w-[9.5rem] h-[12rem] md:w-[12rem] md:h-[13rem] lg:w-[14rem] lg:h-[15rem]{% endif %} items-hover">
+                   <a href="{% url 'noticias:noticia' year=noticia.fecha.year month=noticia.fecha.month day=noticia.fecha.day id=noticia.id %}">
+                    {% if forloop.first %}
+                        {% include 'components/PrimerNoticiasSection.html' %}
+                    {% else %}
+                        {% include 'components/OtrasNoticiasSection.html' %}
+                    {% endif %}
+                    </a>
+            </article>
+        {% endfor %}
+    </section>
+    <section class="mx-auto overflow-hidden text-white">
+        <a class="inline-block w-fit border rounded-[10px] font-sourceSemiBold text-xl bg-primary px-16 py-2 text-center hover:underline" 
+                href="{% url 'noticias:total_noticias' %}"> 
+            Ver más noticias
+        </a>
+    </section>
+</div>
+{% endblock %}

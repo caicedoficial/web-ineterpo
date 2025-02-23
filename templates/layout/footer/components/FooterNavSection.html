@@ -1,0 +1,25 @@
+<nav class="flex flex-col gap-6">
+    <h1 class="font-sourceSemiBold text-[16px] uppercase">Contenido:</h1>
+    <ul class="flex flex-col gap-2 font-sourceExtraLight text-base">
+        <li>
+            <a class="underline"
+                href="{% url 'inicio' %}">Hogar</a>
+        </li>
+        <li>
+            <a class="underline"
+                href="{% url 'noticias:noticias' %}">Noticias</a>
+        </li>
+        <li>
+            <a class="underline"
+                href="{% url 'eventos' %}">Eventos</a>
+        </li>
+        <li>
+            <a class="underline"
+                href="{% url 'implementaciones' %}">Implementaciones</a>
+        </li>
+        <li>
+            <a class="underline"
+                href="{% url 'institucional' %}">Institucional</a>
+        </li>
+    </ul>
+</nav>

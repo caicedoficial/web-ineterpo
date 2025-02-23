@@ -1,0 +1,45 @@
+{% extends 'index.html' %}{% load static %}
+
+{% block content %}
+<main class="grid gap-y-8 mx-auto mb-8 p-4 max-w-[1024px] w-full">
+    <section class="grid md:gap-2">
+        <h1 class="text-2xl md:text-4xl font-sourceBold max-w-[40ch] text-balance font-bold">{% block title %}{{ objeto.titulo }}{% endblock %}</h1>
+        <div class="flex items-center pt-2 justify-between gap-4 border-t-2 border-black md:gap-8"> 
+            <p class="text-base md:text-lg font-sourceExtraLight italic lowercase bg-primary px-2 py-1 text-white">{{ objeto.formatted_fecha }} - {{ objeto.fecha|time }}</p>
+            {% if objeto.tipo %}
+                <p class="text-end text-base md:text-lg font-sourceLight uppercase text-red-700">{{ objeto.tipo }}</p>
+            {% endif %}
+        </div>
+    </section>
+    <section class="flex flex-col gap-8">
+        <div class="flex-1">
+            {% if objeto.imagenes %}
+            <div class="relative overflow-hidden">
+                <div class="flex w-full transition-transform duration-500 ease-in-out" id="carousel">
+                    {% for imagen in objeto.imagenes.all %}
+                        <div class="w-full flex-shrink-0 transition-transform">
+                            <img class="h-[20rem] w-full object-contain" loading="lazy" src="{{ imagen.imagen.url }}" alt="{{ imagen.imagen.url }}">
+                        </div>
+                    {% endfor %}
+                </div>
+                <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-primary p-2 text-white hover:bg-primary/80" id="prevBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+                <button class="absolute right-0 top-1/2 -translate-y-1/2 bg-primary p-2 text-white hover:bg-primary/80" id="nextBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </button>
+            </div>
+            {% endif %}
+        </div>
+        <div class="flex-1">
+            <div class="prose prose-lg max-w-none font-sourceRegular">
+                {{ objeto.descripcion|safe }}
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

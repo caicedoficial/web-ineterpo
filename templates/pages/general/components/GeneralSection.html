@@ -1,0 +1,27 @@
+{% load static %}
+<!-- General Section -->
+<div class="w-full 
+    {% if objeto.tipo %}
+        h-[6.5rem] md:h-[8rem] lg:h-[9rem]
+    {% else %}
+        h-[7rem] md:h-[9rem] lg:h-[10.5rem]
+    {% endif %}
+    ">
+    {% if objeto.imagenes.first.imagen %}
+        <img class="w-full h-full object-top object-cover"
+            src="{{ objeto.imagenes.first.imagen.url }}"
+            alt="Imagen de la noticia {{ objeto.titulo }}">
+    {% else%}
+        <img class="w-full h-full object-top object-cover"
+            src="{% static 'images/ineterpo.webp' %}"
+            alt="Imagen de la noticia {{ objeto.titulo }}">
+    {% endif %}
+</div>
+<small class="absolute top-0 right-0 px-2 py-1 lowercase bg-primary text-white text-[10px] md:text-[12px]"> {{ objeto.formatted_fecha }} </small>
+<div class="grid py-2">
+    {% if objeto.tipo %}
+        <p class="text-[9.5px] text-red-700 uppercase font-sourceExtraLight tracking-wider lg:text-[12px]"> {{ objeto.tipo }} </p>
+    {% endif %}
+    <h1 class="text-black font-sourceSemiBold truncate text-[14px] font-bold lg:text-[19px]">{{ objeto.titulo }}</h1>
+    <div class="prose line-clamp-2 max-w-none leading-[1.2] font-sourceLight text-black/80">{{ objeto.descripcion|safe }}</div>
+</div>

@@ -1,0 +1,27 @@
+{% load static %}
+<!--Seccion de Aliados-->
+<section class="flex flex-col gap-6 lg:w-fit">
+    <div class="flex gap-1.5">
+        <img class="w-6 h-6 lg:w-6 lg:h-6"
+            src="{% static 'icons/footer/aliados.svg' %}" alt="Icono de Aliados">
+        <h1 class="text-base font-sourceSemiBold lg:text-[16px] uppercase">Aliados:</h1>
+    </div>
+    <div id="aliados-container" class="flex bg-white w-24 h-28 rounded-xl overflow-hidden lg:mx-auto">
+        <a id="aliados-link" class="aliados-flex" href="">
+            <img id="aliados-img" class=""
+                src="{% static 'images/footer/buenaventura.webp' %}" alt="Alcaldía de Buenaventura">
+        </a>
+        <a id="aliados-link" class="aliados-flex" href="">
+            <img id="aliados-img" class=""
+                src="{% static 'images/footer/gov.webp' %}" alt="Icono del Gobierno Nacional">
+        </a>
+        <a id="aliados-link" class="aliados-flex" href="">
+            <img id="aliados-img" class=""
+                src="{% static 'images/footer/icfes.webp' %}" alt="Icono de pruebas ICFES">
+        </a>
+        <a id="aliados-link" class="aliados-flex" href="">
+            <img id="aliados-img" class=""
+                src="{% static 'images/footer/u-valle.webp' %}" alt="Icono de la Universidad del Valle">
+        </a>
+    </div>
+</section>

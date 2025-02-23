@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<div class="grid gap-y-6 md:gap-y-10 mx-4 mb-8">
+    <section class="grid border-b-2 border-black">
+        <h1 class="font-sourceBlack text-4xl md:text-5xl text-primary uppercase">{% block title %}{{ modelo }}{% endblock %}</h1>
+    </section>
+    {% if objetos %}
+        <section class="grid grid-cols-2 gap-4 mx-auto md:gap-y-6 md:gap-x-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            {% for objeto in objetos %}
+                <article class="m-auto relative items-hover w-[9.5rem] h-[12rem] md:w-[12rem] md:h-[13rem] lg:w-[14rem] lg:h-[15rem]">
+                    <a href="{% url 'objeto_detalle' year=objeto.fecha.year month=objeto.fecha.month day=objeto.fecha.day id=objeto.id modelo=modelo %}">
+                        {% include 'components/GeneralSection.html' %}
+                    </a>
+                </article>
+            {% endfor %}
+        </section>
+        <section class="mx-auto overflow-hidden text-white">
+            {% if not check %}
+            <a class="inline-block w-fit border font-sourceSemiBold hover:underline rounded-[10px] text-xl bg-primary px-16 py-2 text-center" 
+                href="{% url 'total_modelo' modelo=modelo %}"> 
+                Ver más
+            </a>
+            {% endif %}
+        </section>
+    {% else %}
+    <section class="mx-auto text-center border bg-slate-50 p-6 rounded-[10px]">
+        <span class="text-lg">NO HAY CONTENIDO DISPONIBLE</span>
+    </section>
+    {% endif %}
+</div>
+
+{% endblock %}
