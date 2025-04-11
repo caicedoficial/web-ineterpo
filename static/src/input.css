@@ -36,6 +36,25 @@
     src: url('../fonts/SourceSansPro-Black.otf') format('opentype');
 }
 
+.inicio-item {
+    @apply flex flex-col rounded-lg shadow-[0_0_6px_rgba(0,0,0,0.2)] bg-white px-4 py-2 gap-2 min-w-[300px] max-w-[400px];
+    div {
+        @apply flex items-center text-white gap-1 p-1 bg-secundary rounded-md;
+    }
+
+    h2 {
+        @apply text-[1.3rem] font-sourceBold;
+    }
+    
+    img {
+        @apply w-12 h-12 object-cover;
+    }
+
+    p {
+        @apply text-lg font-sourceLight px-2;
+    }
+}
+
 .aliados-flex {
     @apply flex-shrink-0 flex-grow-0 basis-full h-full p-1 flex items-center justify-center;
 }
@@ -48,7 +67,7 @@
 
 @layer components {
 .nav-link {
-    @apply pt-2 pb-1 font-sourceExtraLight tracking-wider inline-block w-full text-[#f0f0f0] text-center;
+    @apply pt-2 pb-1 font-thin tracking-wider inline-block w-full text-[#f0f0f0] text-center;
 }
 
 .nav-link:hover {

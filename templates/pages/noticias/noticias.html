@@ -4,8 +4,8 @@
 {% block title %}Noticias{% endblock %}
 
 {% block content %}
-<div class="grid gap-y-6 md:gap-y-10 mx-4 mb-8">
-    <section class="flex flex-col px-4 md:pl-8 bg-secundary py-4 max-w-[1280px] mx-auto w-full">
+<main class="grid gap-y-6 md:gap-y-10 mx-auto mb-8 max-w-[1140px]">
+    <section class="flex flex-col px-4 bg-secundary py-4 w-full">
         <div class="flex items-center justify-center md:justify-normal gap-8">
             <h1 class="font-sourceBlack text-[50px] md:text-[90px] text-white uppercase">{{ modelo }}</h1> 
             <img class="w-20 h-20 md:w-28 md:h-28"
@@ -32,5 +32,5 @@
             Ver más noticias
         </a>
     </section>
-</div>
+</main>
 {% endblock %}
