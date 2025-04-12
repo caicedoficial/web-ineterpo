@@ -37,9 +37,9 @@
 }
 
 .inicio-item {
-    @apply flex flex-col rounded-lg shadow-[0_0_6px_rgba(0,0,0,0.2)] bg-white px-4 py-2 gap-2 min-w-[300px] max-w-[400px];
+    @apply flex flex-col shadow-md bg-white px-4 py-2 gap-2 min-w-[300px] max-w-[400px];
     div {
-        @apply flex items-center text-white gap-1 p-1 bg-secundary rounded-md;
+        @apply flex items-center text-white gap-1 p-1 bg-secundary rounded-lg shadow;
     }
 
     h2 {
