@@ -44,6 +44,7 @@
 
     h2 {
         @apply text-[1.3rem] font-sourceBold;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
     
     img {
@@ -52,6 +53,7 @@
 
     p {
         @apply text-lg font-sourceLight px-2;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
 }
 
@@ -68,6 +70,7 @@
 @layer components {
 .nav-link {
     @apply pt-2 pb-1 font-thin tracking-wider inline-block w-full text-[#f0f0f0] text-center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .nav-link:hover {

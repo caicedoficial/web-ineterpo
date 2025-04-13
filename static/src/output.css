@@ -1316,6 +1316,7 @@ video {
   letter-spacing: 0.05em;
   --tw-text-opacity: 1;
   color: rgb(240 240 240 / var(--tw-text-opacity, 1));
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .nav-link:hover {
@@ -1663,10 +1664,6 @@ video {
   gap: 1.25rem;
 }
 
-.gap-6 {
-  gap: 1.5rem;
-}
-
 .gap-8 {
   gap: 2rem;
 }
@@ -1797,10 +1794,6 @@ video {
 
 .p-6 {
   padding: 1.5rem;
-}
-
-.p-8 {
-  padding: 2rem;
 }
 
 .px-16 {
@@ -2132,6 +2125,9 @@ video {
   h2 {
     font-size: 1.3rem;
   }
+  h2 {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
   img {
     height: 3rem;
   }
@@ -2152,6 +2148,9 @@ video {
   p {
     font-size: 1.125rem;
     line-height: 1.75rem;
+  }
+  p {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -2278,12 +2277,12 @@ video {
     border-color: rgb(249 168 212 / var(--tw-border-opacity, 1));
   }
 
-  .md\:p-12 {
-    padding: 3rem;
-  }
-
   .md\:p-4 {
     padding: 1rem;
+  }
+
+  .md\:p-8 {
+    padding: 2rem;
   }
 
   .md\:text-4xl {
