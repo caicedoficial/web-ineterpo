@@ -1,13 +1,15 @@
-{% extends 'index.html' %}
+{% extends 'index.html' %}{% load static %}
 
 {% block content %}
 
-<div class="grid gap-y-6 md:gap-y-10 max-w-[1140px] mx-auto w-full mb-8">
-    <section class="grid border-b-2 border-black">
-        <h1 class="font-sourceBlack text-4xl md:text-5xl text-primary uppercase">{% block title %}{{ modelo }}{% endblock %}</h1>
+<div class="grid gap-y-6 md:gap-y-10 w-full mb-8">
+    <section class="flex flex-col bg-secundary py-4 w-full shadow-md rounded-[10px]">
+        <div class="flex items-center justify-center gap-8">
+            <h1 class="font-sourceBlack text-[40px] md:text-[70px] text-white uppercase">{% block title %}{{ modelo }}{% endblock %} </h1> 
+        </div>
     </section>
     {% if objetos %}
-        <section class="grid grid-cols-2 gap-4 mx-auto md:gap-y-6 md:gap-x-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        <section class="grid grid-cols-2 gap-4 md:gap-y-6 md:gap-x-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             {% for objeto in objetos %}
                 <article class="m-auto relative items-hover w-[9.5rem] h-[12rem] md:w-[12rem] md:h-[13rem] lg:w-[14rem] lg:h-[15rem]">
                     <a href="{% url 'objeto_detalle' year=objeto.fecha.year month=objeto.fecha.month day=objeto.fecha.day id=objeto.id modelo=modelo %}">
