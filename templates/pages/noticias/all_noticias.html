@@ -13,7 +13,7 @@
     {% if noticias %}
         <section class="grid grid-cols-2 gap-4 mx-auto md:gap-y-6 md:gap-x-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             {% for noticia in noticias %}
-                <article class="m-auto relative items-hover w-[9.5rem] h-[12rem] md:w-[12rem] md:h-[13rem] lg:w-[14rem] lg:h-[15rem]">
+                <article class="m-auto aspect-auto relative items-hover w-[9.5rem] h-[12rem] md:w-[12rem] md:h-[13rem] lg:w-[14rem] lg:h-[15rem]">
                     <a href="{% url 'noticias:noticia' year=noticia.fecha.year month=noticia.fecha.month day=noticia.fecha.day id=noticia.id %}">
                         {% include 'components/OtrasNoticiasSection.html' %}
                     </a>
