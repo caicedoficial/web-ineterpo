@@ -23,11 +23,11 @@
         <div class="flex-1">
             {% if objeto.archivos.exists %}
             <div class="relative overflow-hidden">
-                <ul class="flex w-full transition-transform duration-500 ease-in-out" id="carousel">
+                <ul class="flex w-full transition-transform duration-500 ease-in-out aspect-auto" id="carousel">
                     {% for archivo in objeto.archivos.all %}
                         <li class="w-full flex-shrink-0 transition-transform aspect-auto">
                             {% if archivo.es_imagen %}
-                                <img class="h-[20rem] w-full object-contain mx-auto aspect-auto" loading="lazy" 
+                                <img class="h-[20rem] object-contain mx-auto aspect-auto" loading="lazy" 
                                      src="{{ archivo.archivo.url }}" alt="{{ archivo.titulo|default:'Imagen' }}">
                             {% elif archivo.es_video %}
                                 <video class="h-[20rem] object-contain mx-auto aspect-auto" controls>
