@@ -1,15 +1,12 @@
-{% extends 'index.html' %}
-{% load static %}
-
-{% block title %}Noticias{% endblock %}
+{% extends 'index.html' %}{% load static %}
 
 {% block content %}
 <div class="grid gap-y-6 md:gap-y-10 mb-8">
     <section class="flex flex-col bg-secundary py-4 shadow-md rounded-[10px]">
         <div class="flex items-center justify-center gap-8">
-            <h1 class="font-sourceBlack text-[40px] md:text-[70px] text-white uppercase">{{ modelo }}</h1> 
+            <h1 class="font-sourceBlack text-[40px] md:text-[70px] text-white uppercase">{% block title %}{{ modelo }}{% endblock %}</h1> 
             <img class="w-16 h-16 md:w-24 md:h-24"
-                src="{% static 'icons/header/notice.svg' %}" alt="">
+                src="{% static 'icons/header/notice.svg' %}" loading="lazy">
         </div>
     </section>
     <section class="grid grid-cols-2 gap-4 place-content-end place-items-center md:gap-y-4 md:gap-x-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">

@@ -1433,17 +1433,22 @@ video {
   margin-right: auto;
 }
 
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .my-auto {
   margin-top: auto;
   margin-bottom: auto;
 }
 
-.mb-4 {
-  margin-bottom: 1rem;
-}
-
 .mb-8 {
   margin-bottom: 2rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
 }
 
 .line-clamp-2 {
@@ -1714,12 +1719,12 @@ video {
   border-radius: 0.75rem;
 }
 
-.border {
-  border-width: 1px;
+.rounded {
+  border-radius: 0.25rem;
 }
 
-.border-b-2 {
-  border-bottom-width: 2px;
+.border {
+  border-width: 1px;
 }
 
 .border-l-2 {
@@ -1771,6 +1776,16 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+.bg-gray-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
+}
+
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
 }
 
 .object-contain {
@@ -1897,11 +1912,6 @@ video {
   line-height: 2rem;
 }
 
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-
 .text-\[0\.875rem\] {
   font-size: 0.875rem;
 }
@@ -2007,11 +2017,6 @@ video {
   color: rgb(0 0 0 / 0.8);
 }
 
-.text-primary {
-  --tw-text-opacity: 1;
-  color: rgb(10 77 10 / var(--tw-text-opacity, 1));
-}
-
 .text-red-700 {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity, 1));
@@ -2020,6 +2025,11 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity, 1));
 }
 
 .underline {
@@ -2218,6 +2228,29 @@ video {
   }
 }
 
+.carousel {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  anchor-name: --carousel;
+  > li {
+    scroll-snap-align: center;
+  }
+  &::scroll-button(*) {
+    position: fixed;
+    position-anchor: --carousel;
+    font-family: "Material Symbols Outlined";
+  }
+  &::scroll-button(right) {
+    position-area: inline-end center;
+    content: 'arrow_forward' / 'Next';
+  }
+  &::scroll-button(left) {
+    position-area: inline-start center;
+    content: 'arrow_back' / 'Previous';
+  }
+}
+
 .hover\:bg-primary\/80:hover {
   background-color: rgb(10 77 10 / 0.8);
 }
@@ -2340,11 +2373,6 @@ video {
   .md\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
-  }
-
-  .md\:text-5xl {
-    font-size: 3rem;
-    line-height: 1;
   }
 
   .md\:text-\[12px\] {

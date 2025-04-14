@@ -21,7 +21,7 @@
         <section class="mx-auto overflow-hidden text-white">
             {% if not check %}
             <a class="inline-block w-fit border font-sourceBold hover:underline rounded-[10px] text-xl bg-primary px-16 py-2 text-center" 
-                href="{% url 'total_modelo' modelo=modelo %}"> 
+                href="{% url 'total_modelo' modelo=modelo|lower %}"> 
                 Ver más
             </a>
             {% endif %}

@@ -1,31 +1,38 @@
 from django.contrib import admin
-from .models import Institucional, ImagenesInstitucional, Eventos, ImagenesEventos, Implementaciones, ImagenesImplementaciones
+from .models import Institucional, ArchivosInstitucional, Eventos, ArchivosEventos, Implementaciones, ArchivosImplementaciones
 
 class BaseImagenAdmin(admin.TabularInline):
     extra = 1
+
+class BaseArchivoAdmin(admin.TabularInline):
+    extra = 1
+    fields = ('archivo', 'tipo_archivo', 'titulo')
 
 class BaseModelAdmin(admin.ModelAdmin):
     list_display = ('titulo', 'fecha')
     search_fields = ('titulo', 'fecha')
     ordering = ['-fecha']
 
-class ImagenesInstitucionalAdmin(BaseImagenAdmin):
-    model = ImagenesInstitucional
+class ArchivosInstitucionalAdmin(BaseArchivoAdmin):
+    model = ArchivosInstitucional
 
-class InstitucionalAdmin(BaseModelAdmin):
-    inlines = [ImagenesInstitucionalAdmin]
+class InstitucionalAdmin(admin.ModelAdmin):
+    inlines = [ArchivosInstitucionalAdmin]
+    list_display = ('titulo', 'fecha')
+    search_fields = ('titulo', 'fecha')
+    ordering = ['-fecha']
 
-class ImagenesEventosAdmin(BaseImagenAdmin):
-    model = ImagenesEventos
+class ArchivosEventosAdmin(BaseImagenAdmin):
+    model = ArchivosEventos
 
 class EventosAdmin(BaseModelAdmin):
-    inlines = [ImagenesEventosAdmin]
+    inlines = [ArchivosEventosAdmin]
 
-class ImagenesImplementacionesAdmin(BaseImagenAdmin):
-    model = ImagenesImplementaciones
+class ArchivosImplementacionesAdmin(BaseImagenAdmin):
+    model = ArchivosImplementaciones
 
 class ImplementacionesAdmin(BaseModelAdmin):
-    inlines = [ImagenesImplementacionesAdmin]
+    inlines = [ArchivosImplementacionesAdmin]
 
 admin.site.register(Institucional, InstitucionalAdmin)
 admin.site.register(Eventos, EventosAdmin)

@@ -11,6 +11,13 @@ TIPO_EVENTO = (
     ('Dia del Estudiante', 'Dia del Estudiante'),
 )
 
+TIPO_ARCHIVO_CHOICES = (
+        ('imagen', 'Imagen'),
+        ('video', 'Video'),
+        ('documento', 'Documento'),
+        ('otro', 'Otro'),
+    )
+
 class BaseModel(models.Model):
     titulo = models.CharField("Titulo", max_length=100)
     descripcion = HTMLField()
@@ -45,53 +52,83 @@ class Implementaciones(BaseModel):
         verbose_name = "Implementación"
         verbose_name_plural = "Implementaciones"
 
-class ImagenesInstitucional(models.Model):
-    institucional = models.ForeignKey(Institucional, on_delete=models.CASCADE, related_name="imagenes")
+class ArchivosInstitucional(models.Model):
+    institucional = models.ForeignKey(Institucional, on_delete=models.CASCADE, related_name="archivos")
 
-    def imagen_ruta(instance, filename):
+    def archivo_ruta(instance, filename):
         ext = filename.split('.')[-1]
         filename = f'{uuid4()}.{ext}'
         return os.path.join(f'institucional/{instance.institucional.fecha.year}/{instance.institucional.fecha.month}/{instance.institucional.fecha.day}/{instance.institucional.id}', filename)
+    
+    def es_imagen(self):
+        return self.archivo.name.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp'))
+    
+    def es_video(self):
+        return self.archivo.name.lower().endswith(('.mp4', '.webm', '.ogg'))
+    
+    def es_documento(self):
+        return self.archivo.name.lower().endswith(('.pdf', '.doc', '.docx', '.txt'))
 
-    imagen = models.ImageField(upload_to=imagen_ruta)
+    archivo = models.FileField(upload_to=archivo_ruta)
+    tipo_archivo = models.CharField(max_length=20, choices=TIPO_ARCHIVO_CHOICES)
 
     class Meta:
-        verbose_name = "imagen"
-        verbose_name_plural = "imagenes de institucional"
+        verbose_name = "archivo"
+        verbose_name_plural = "archivos institucionales"
 
     def __str__(self):
         return self.institucional.titulo
 
-class ImagenesEventos(models.Model):
-    evento = models.ForeignKey(Eventos, on_delete=models.CASCADE, related_name="imagenes")
+class ArchivosEventos(models.Model):
+    evento = models.ForeignKey(Eventos, on_delete=models.CASCADE, related_name="archivos")
 
-    def imagen_ruta(instance, filename):
+    def archivo_ruta(instance, filename):
         ext = filename.split('.')[-1]
         filename = f'{uuid4()}.{ext}'
         return os.path.join(f'eventos/{instance.evento.fecha.year}/{instance.evento.fecha.month}/{instance.evento.fecha.day}/{instance.evento.id}', filename)
+    
+    def es_imagen(self):
+        return self.archivo.name.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp'))
+    
+    def es_video(self):
+        return self.archivo.name.lower().endswith(('.mp4', '.webm', '.ogg'))
+    
+    def es_documento(self):
+        return self.archivo.name.lower().endswith(('.pdf', '.doc', '.docx', '.txt'))
 
-    imagen = models.ImageField(upload_to=imagen_ruta)
+    archivo = models.FileField(upload_to=archivo_ruta)
+    tipo_archivo = models.CharField(max_length=20, choices=TIPO_ARCHIVO_CHOICES)
 
     class Meta:
-        verbose_name = "imagen"
-        verbose_name_plural = "imagenes de eventos"
+        verbose_name = "archivo"
+        verbose_name_plural = "archivos de eventos"
 
     def __str__(self):
         return self.evento.titulo
 
-class ImagenesImplementaciones(models.Model):
-    implementacion = models.ForeignKey(Implementaciones, on_delete=models.CASCADE, related_name="imagenes")
+class ArchivosImplementaciones(models.Model):
+    implementacion = models.ForeignKey(Implementaciones, on_delete=models.CASCADE, related_name="archivos")
 
-    def imagen_ruta(instance, filename):
+    def archivo_ruta(instance, filename):
         ext = filename.split('.')[-1]
         filename = f'{uuid4()}.{ext}'
         return os.path.join(f'implementaciones/{instance.implementacion.fecha.year}/{instance.implementacion.fecha.month}/{instance.implementacion.fecha.day}/{instance.implementacion.id}', filename)
+    
+    def es_imagen(self):
+        return self.archivo.name.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp'))
+    
+    def es_video(self):
+        return self.archivo.name.lower().endswith(('.mp4', '.webm', '.ogg'))
+    
+    def es_documento(self):
+        return self.archivo.name.lower().endswith(('.pdf', '.doc', '.docx', '.txt'))
 
-    imagen = models.ImageField(upload_to=imagen_ruta)
+    archivo = models.FileField(upload_to=archivo_ruta)
+    tipo_archivo = models.CharField(max_length=20, choices=TIPO_ARCHIVO_CHOICES)
 
     class Meta:
-        verbose_name = "imagen"
-        verbose_name_plural = "imagenes de implementaciones"
+        verbose_name = "archivo"
+        verbose_name_plural = "archivos de implementaciones"
 
     def __str__(self):
         return self.implementacion.titulo

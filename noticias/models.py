@@ -15,6 +15,13 @@ TIPOS_NOTICIAS = (
     ('Tecnologia', 'Tecnología'),
 )
 
+TIPO_ARCHIVO_CHOICES = (
+        ('imagen', 'Imagen'),
+        ('video', 'Video'),
+        ('documento', 'Documento'),
+        ('otro', 'Otro'),
+    )
+
 class Noticias(models.Model):
     titulo = models.CharField("Titulo", max_length=100)
     descripcion = HTMLField()
@@ -36,19 +43,29 @@ class Noticias(models.Model):
     def formatted_fecha(self):
         return self.fecha.strftime('%d %b %Y')
 
-class ImagenesNoticias(models.Model):
-    noticia = models.ForeignKey(Noticias, on_delete=models.CASCADE, related_name="imagenes")
+class ArchivosNoticias(models.Model):
+    noticia = models.ForeignKey(Noticias, on_delete=models.CASCADE, related_name="archivos")
 
-    def imagen_ruta(instance, filename):
+    def archivo_ruta(instance, filename):
         ext = filename.split('.')[-1]
         filename = f'{uuid4()}.{ext}'
         return os.path.join(f'noticias/{instance.noticia.fecha.year}/{instance.noticia.fecha.month}/{instance.noticia.fecha.day}/{instance.noticia.id}/', filename)
+    
+    def es_imagen(self):
+        return self.archivo.name.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp'))
+    
+    def es_video(self):
+        return self.archivo.name.lower().endswith(('.mp4', '.webm', '.ogg'))
+    
+    def es_documento(self):
+        return self.archivo.name.lower().endswith(('.pdf', '.doc', '.docx', '.txt'))
 
-    imagen = models.ImageField(upload_to=imagen_ruta)
+    archivo = models.FileField(upload_to=archivo_ruta)
+    tipo_archivo = models.CharField(max_length=20, choices=TIPO_ARCHIVO_CHOICES)
 
     class Meta:
-        verbose_name = "imagen"
-        verbose_name_plural = "imagenes de la noticia"
+        verbose_name = "archivo"
+        verbose_name_plural = "archivos de la noticia"
 
     def __str__(self):
         return self.noticia.titulo

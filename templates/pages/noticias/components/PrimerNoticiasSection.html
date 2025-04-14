@@ -2,10 +2,14 @@
 {% load static %}
 
 <div class="w-full h-[13rem] md:h-[18rem] lg:h-[22rem]">
-{% if noticia.imagenes %}
+{% if noticia.archivos.first.es_imagen %}
     <img class="w-full h-full object-top object-cover" 
-        src="{{ noticia.imagenes.first.imagen.url }}" 
-        alt="Imagen de la noticia {{ noticia.titulo }}">
+        src="{{ noticia.archivos.first.archivo.url }}" 
+        alt="Imagen de la noticia {{ noticia.titulo }}" loading="lazy">
+{% else%}
+    <img class="w-full h-full object-top object-cover"
+        src="{% static 'images/ineterpo.webp' %}"
+        alt="Imagen de la noticia {{ noticia.titulo }}" loading="lazy">
 {% endif %}
 </div>
 <small class="absolute bg-primary px-3 py-2 text-white top-0 right-0 lowercase">{{ noticia.formatted_fecha }}</small>

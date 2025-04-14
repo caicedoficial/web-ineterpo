@@ -3,25 +3,54 @@
 {% block content %}
 <main class="grid gap-y-8 mx-auto mb-8 p-4 max-w-[1140px] w-full">
     <section class="grid md:gap-2">
-        <h1 class="text-2xl md:text-4xl font-sourceBold max-w-[40ch] text-balance font-bold">{% block title %}{{ objeto.titulo }}{% endblock %}</h1>
+        <h1 class="text-2xl md:text-4xl font-sourceBold max-w-[40ch] text-balance font-bold">
+            {% block title %}{{ objeto.titulo }}{% endblock %}
+        </h1>
         <div class="flex items-center pt-2 justify-between gap-4 border-t-2 border-black md:gap-8"> 
-            <p class="text-base md:text-lg font-sourceExtraLight italic lowercase bg-primary px-2 py-1 text-white">{{ objeto.formatted_fecha }} - {{ objeto.fecha|time }}</p>
+            <p class="text-base md:text-lg font-sourceExtraLight italic lowercase bg-primary px-2 py-1 text-white">
+                {{ objeto.formatted_fecha }} - {{ objeto.fecha|time }}
+            </p>
             {% if objeto.tipo %}
-                <p class="text-end text-base md:text-lg font-sourceLight uppercase text-red-700">{{ objeto.tipo }}</p>
+                <p class="text-end text-base md:text-lg font-sourceLight uppercase text-red-700">
+                    {{ objeto.tipo }}
+                </p>
             {% endif %}
         </div>
     </section>
+    
     <section class="flex flex-col gap-8">
+        <!-- Sección de archivos multimedia -->
         <div class="flex-1">
-            {% if objeto.imagenes %}
+            {% if objeto.archivos.exists %}
             <div class="relative overflow-hidden">
-                <div class="flex w-full transition-transform duration-500 ease-in-out" id="carousel">
-                    {% for imagen in objeto.imagenes.all %}
-                        <div class="w-full flex-shrink-0 transition-transform">
-                            <img class="h-[20rem] w-full object-contain" loading="lazy" src="{{ imagen.imagen.url }}" alt="{{ imagen.imagen.url }}">
-                        </div>
+                <ul class="flex w-full transition-transform duration-500 ease-in-out" id="carousel">
+                    {% for archivo in objeto.archivos.all %}
+                        <li class="w-full flex-shrink-0 transition-transform">
+                            {% if archivo.es_imagen %}
+                                <img class="h-[20rem] w-full object-contain mx-auto" loading="lazy" 
+                                     src="{{ archivo.archivo.url }}" alt="{{ archivo.titulo|default:'Imagen' }}">
+                            {% elif archivo.es_video %}
+                                <video class="h-[20rem] object-contain mx-auto" controls>
+                                    <source src="{{ archivo.archivo.url }}" type="video/mp4">
+                                    Tu navegador no soporta el elemento de video.
+                                </video>
+                            {% elif archivo.es_documento %}
+                                <div class="flex flex-col items-center justify-center h-[20rem] bg-gray-100 mx-auto">
+                                    <svg class="w-16 h-16 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M4 18h12V6H4v12zM4 4h12V2H4v2zm0-4h12c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V2c0-1.1.9-2 2-2z"/>
+                                    </svg>
+                                    <a href="{{ archivo.archivo.url }}" 
+                                       class="mt-4 px-4 py-2 bg-primary text-white rounded hover:bg-primary/80"
+                                       target="_blank" 
+                                       download>
+                                        Descargar {{ archivo.titulo|default:'documento' }}
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </li>
                     {% endfor %}
-                </div>
+                </ul>
+                {% if objeto.archivos.count > 1 %}
                 <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-primary p-2 text-white hover:bg-primary/80" id="prevBtn">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -32,9 +61,12 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                     </svg>
                 </button>
+                {% endif %}
             </div>
             {% endif %}
         </div>
+
+        <!-- Contenido de la descripción -->
         <div class="flex-1">
             <div class="prose prose-lg max-w-none font-sourceRegular leading-[1.5] text-black/80">
                 {{ objeto.descripcion|safe }}
