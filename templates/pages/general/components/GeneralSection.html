@@ -8,11 +8,11 @@
     {% endif %}
     ">
     {% if objeto.archivos.first.es_imagen %}
-        <img class="w-full h-full object-top object-cover"
+        <img class="w-full h-full object-top object-cover aspect-auto"
             src="{{ objeto.archivos.first.archivo.url }}"
             alt="Imagen de la noticia {{ objeto.titulo }}" loading="lazy">
     {% else%}
-        <img class="w-full h-full object-top object-cover"
+        <img class="w-full h-full object-top object-cover aspect-auto"
             src="{% static 'images/ineterpo.webp' %}"
             alt="Imagen de la noticia {{ objeto.titulo }}" loading="lazy">
     {% endif %}

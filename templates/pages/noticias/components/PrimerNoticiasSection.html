@@ -3,11 +3,11 @@
 
 <div class="w-full h-[13rem] md:h-[18rem] lg:h-[22rem]">
 {% if noticia.archivos.first.es_imagen %}
-    <img class="w-full h-full object-top object-cover" 
+    <img class="w-full h-full object-top object-cover aspect-auto" 
         src="{{ noticia.archivos.first.archivo.url }}" 
         alt="Imagen de la noticia {{ noticia.titulo }}" loading="lazy">
 {% else%}
-    <img class="w-full h-full object-top object-cover"
+    <img class="w-full h-full object-top object-cover aspect-auto"
         src="{% static 'images/ineterpo.webp' %}"
         alt="Imagen de la noticia {{ noticia.titulo }}" loading="lazy">
 {% endif %}
