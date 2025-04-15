@@ -2,11 +2,11 @@
 <!-- Otras Noticias Section -->
 <div class="w-full h-[6.5rem] md:h-[8rem] lg:h-[9rem]">
 {% if noticia.archivos.first.es_imagen %}
-    <img class="w-full h-full object-top object-cover" 
+    <img class="w-full h-full object-top object-cover aspect-auto" 
         src="{{ noticia.archivos.first.archivo.url }}"
         alt="Imagen de la noticia {{ noticia.titulo }}" loading="lazy">
 {% else%}
-    <img class="w-full h-full object-top object-cover"
+    <img class="w-full h-full object-top object-cover aspect-auto"
         src="{% static 'images/ineterpo.webp' %}"
         alt="Imagen de la noticia {{ noticia.titulo }}" loading="lazy">
 {% endif %}
