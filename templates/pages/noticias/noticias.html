@@ -9,6 +9,7 @@
                 src="{% static 'icons/header/notice.svg' %}" loading="lazy">
         </div>
     </section>
+    {% if noticias %}
     <section class="grid grid-cols-2 gap-4 aspect-auto place-content-end place-items-center md:gap-y-4 md:gap-x-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {% for noticia in noticias %}
             <article class="m-auto relative aspect-auto {% if forloop.first %}col-span-2 row-span-2 w-[19rem] h-[19rem] md:w-[24rem] md:h-[24rem] lg:w-[28rem] lg:h-[28rem]{% else %}col-span-1 row-span-1 w-[9.5rem] h-[12rem] md:w-[12rem] md:h-[13rem] lg:w-[14rem] lg:h-[15rem]{% endif %} items-hover">
@@ -23,16 +24,15 @@
         {% endfor %}
     </section>
     <section class="mx-auto overflow-hidden text-white">
-        {% if noticias %}
-            <a class="inline-block w-fit border rounded-[10px] font-sourceSemiBold text-xl bg-primary px-16 py-2 text-center hover:underline" 
-                href="{% url 'noticias:total_noticias' %}"> 
-                Ver más noticias
-            </a>
-        {% else %}
-            <section class="mx-auto text-center border bg-slate-50 p-6 rounded-[10px]">
-                <span class="text-lg text-black">NO HAY CONTENIDO DISPONIBLE</span>
-            </section>
-        {% endif %}
+        <a class="inline-block w-fit border rounded-[10px] font-sourceSemiBold text-xl bg-primary px-16 py-2 text-center hover:underline" 
+            href="{% url 'noticias:total_noticias' %}"> 
+            Ver más noticias
+        </a>
     </section>
+    {% else %}
+        <section class="mx-auto text-center border bg-slate-50 p-6 rounded-[10px]">
+            <span class="text-lg text-black">NO HAY CONTENIDO DISPONIBLE</span>
+        </section>
+    {% endif %}
 </div>
 {% endblock %}
