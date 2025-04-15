@@ -13,5 +13,6 @@ from whitenoise import WhiteNoise
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ineterpo.settings')
 
-application = get_wsgi_application()
-application = WhiteNoise(application)
+# Cambia 'application' por 'app' para que coincida con lo que Vercel espera
+app = get_wsgi_application()
+app = WhiteNoise(app)

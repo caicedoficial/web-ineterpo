@@ -17,7 +17,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "ineterpo/wsgi.py"
+            "dest": "ineterpo/wsgi.app"
         }
     ],
     "env": {
