@@ -5,7 +5,7 @@ django-cf==0.0.17
 django-compressor==4.5.1
 django-tinymce==4.1.0
 pillow==11.1.0
-psycopg2==2.9.10
+npsycopg2==2.9.10\n-binary==2.9.10\n
 python-dotenv==1.1.0
 rcssmin==1.1.2
 rjsmin==1.2.2
