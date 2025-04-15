@@ -134,6 +134,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+# Configuración de WhiteNoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Configuración de tipos MIME
@@ -144,12 +146,12 @@ CONTENT_TYPES = {
                 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
 }
 
-# Configuración de Supabase
+# Configuración de Supabase para archivos de usuario
 SUPABASE_URL = os.getenv('SUPABASE_URL')
 SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 SUPABASE_BUCKET_NAME = os.getenv('SUPABASE_BUCKET_NAME')
 
-# Configuración de almacenamiento
+# Configuración de almacenamiento para archivos de usuario
 DEFAULT_FILE_STORAGE = 'ineterpo.storage.SupabaseStorage'
 
 # URL para archivos multimedia
