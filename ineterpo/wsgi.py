@@ -15,4 +15,4 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ineterpo.settings')
 
 # Cambia 'application' por 'app' para que coincida con lo que Vercel espera
 app = get_wsgi_application()
-app = WhiteNoise(app)
+app = WhiteNoise(app, root='staticfiles/')
