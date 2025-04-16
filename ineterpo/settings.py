@@ -128,11 +128,10 @@ USE_I18N = True
 
 USE_TZ = True
 
-# Configuración de archivos estáticos
 STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "staticfiles"  # Cambia el nombre del directorio para evitar conflicto
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [
-    BASE_DIR / "static",  # Asegúrate de que este directorio exista y contenga tus archivos estáticos
+    BASE_DIR / "static",
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
