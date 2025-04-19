@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [".vercel.app", "localhost", "127.0.0.1"]
 
@@ -140,10 +140,10 @@ else:
     # Configuración para producción (Vercel)
     STORAGES = {
         "default": {
-            "BACKEND": "ineterpo.storage_backends.MediaStorage",
+            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
         },
         "staticfiles": {
-            "BACKEND": "ineterpo.storage_backends.StaticStorage",
+            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
         },
     }
 
