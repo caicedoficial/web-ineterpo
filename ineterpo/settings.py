@@ -148,10 +148,9 @@ AWS_QUERYSTRING_AUTH = False
 
 STORAGES = {
     "default": {
-        "BACKEND": "ineterpo.storage_backends.MediaStorage",
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
     },
     "staticfiles": {
-        "BACKEND": "ineterpo.storage_backends.StaticStorage",
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
     },
 }
-
