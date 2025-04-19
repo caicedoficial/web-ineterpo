@@ -154,3 +154,4 @@ STORAGES = {
         "BACKEND": "ineterpo.storage_backends.StaticStorage",
     },
 }
+
