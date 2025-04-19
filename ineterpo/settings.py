@@ -147,13 +147,10 @@ AWS_S3_FILE_OVERWRITE = False
 AWS_QUERYSTRING_AUTH = False
 
 STORAGES = {
-    # Media file (image) management   
     "default": {
-        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+        "BACKEND": "ineterpo.storage_backends.MediaStorage",
     },
-    
-    # CSS and JS file management
     "staticfiles": {
-        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+        "BACKEND": "ineterpo.storage_backends.StaticStorage",
     },
 }
