@@ -5,7 +5,7 @@
 <div class="grid gap-y-6 md:gap-y-10 w-full mb-8">
     <section class="flex flex-col bg-secundary py-4 w-full shadow-md rounded-[10px]">
         <div class="flex items-center justify-center gap-8">
-            <h1 class="font-sourceBlack text-[40px] md:text-[70px] text-white uppercase">{% block title %}{{ modelo }}{% endblock %} </h1> 
+            <h1 class="font-source font-black text-[40px] md:text-[70px] text-white uppercase">{% block title %}{{ modelo }}{% endblock %} </h1> 
         </div>
     </section>
     {% if objetos %}
@@ -20,7 +20,7 @@
         </section>
         <section class="mx-auto overflow-hidden text-white">
             {% if not check %}
-            <a class="inline-block w-fit border font-sourceBold hover:underline rounded-[10px] text-xl bg-primary px-16 py-2 text-center" 
+            <a class="inline-block w-fit border font-source font-bold hover:underline rounded-[10px] text-xl bg-primary px-16 py-2 text-center" 
                 href="{% url 'total_modelo' modelo=modelo|lower %}"> 
                 Ver más
             </a>
