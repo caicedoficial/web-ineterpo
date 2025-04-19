@@ -9,9 +9,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = [".vercel.app", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = [".vercel.app", "localhost", "127.0.0.1", "web-ineterpo.vercel.app"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -129,22 +129,56 @@ USE_I18N = True
 
 USE_TZ = True
 
-STORAGES = {
-    "default": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
-    },
-    "staticfiles": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
-    },
-}
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Añadir en settings.py
+
+# Configuración de archivos estáticos (CSS, JavaScript, imágenes)
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
+# Configuración de archivos media (subidos por usuarios)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# Configuración de AWS S3
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
 AWS_S3_CUSTOM_DOMAIN = os.getenv("AWS_S3_CUSTOM_DOMAIN")
 AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = 'public-read'
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
 AWS_QUERYSTRING_AUTH = False
+AWS_LOCATION = 'static'
+
+# Configuración para separar media y archivos estáticos en S3
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        "OPTIONS": {
+            "location": "media",
+            "file_overwrite": False,
+        }
+    },
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        "OPTIONS": {
+            "location": "static",
+        }
+    },
+}
+
+# Configuración para desarrollo local (cuando DEBUG=True)
+if DEBUG:
+    STORAGES["staticfiles"] = {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"
+    }
+    STORAGES["default"] = {
+        "BACKEND": "django.core.files.storage.FileSystemStorage"
+    }
