@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     "general.apps.GeneralConfig",
     "noticias.apps.NoticiasConfig",
     'tinymce',
+    'whitenoise',
     'storages',
 ]
 
@@ -65,6 +66,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = "ineterpo.urls"
@@ -147,10 +149,13 @@ AWS_S3_FILE_OVERWRITE = False
 AWS_QUERYSTRING_AUTH = False
 
 STORAGES = {
+    # Media file (image) management   
     "default": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
     },
+    
+    # CSS and JS file management
     "staticfiles": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
     },
 }
