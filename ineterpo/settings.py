@@ -147,10 +147,11 @@ AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
 AWS_S3_CUSTOM_DOMAIN = os.getenv("AWS_S3_CUSTOM_DOMAIN")
 AWS_S3_FILE_OVERWRITE = False
-# AWS_DEFAULT_ACL = 'public-read'
+
 AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=3600',
+    'CacheControl': 'max-age=36400',
 }
+
 AWS_QUERYSTRING_AUTH = False
 
 STORAGES = {
