@@ -2,11 +2,17 @@
 
 {% block content %}
 <div class="grid gap-y-6 md:gap-y-10 mb-8">
-    <section class="flex flex-col bg-secundary py-4 shadow-md rounded-[10px]">
+    <section class="flex flex-col py-6 shadow-md fondo-noticias">
         <div class="flex items-center justify-center gap-8">
-            <h1 class="font-source font-black text-[40px] md:text-[70px] text-white uppercase">{% block title %}{{ modelo }}{% endblock %}</h1> 
-            <img class="w-16 h-16 md:w-24 md:h-24"
-                src="{% static 'icons/header/notice.svg' %}" loading="lazy">
+            <h1 class="font-source font-black text-[40px] md:text-[65px] text-white uppercase">{% block title %}{{ modelo }}{% endblock %}</h1> 
+        </div>
+        <div>
+            <form method="get" class="relative w-full max-w-[600px] mx-auto mt-4 font-source rounded-[10px] overflow-hidden">
+                <input type="text" name="search" placeholder="Buscar" class="w-full py-2 px-4 my-auto rounded-[10px]" value="{{ request.GET.search }}">
+                <button type="submit" class="absolute bg-primary h-full px-2 right-0">
+                    <img src="{% static 'icons/header/buscar.webp' %}" alt="Buscar" class="w-[14px] h-[14px] md:w-[18px] md:h-[18px] my-auto">
+                </button>
+            </form>
         </div>
     </section>
     {% if noticias %}
