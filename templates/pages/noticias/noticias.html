@@ -16,7 +16,7 @@
         </div>
     </section>
     {% if noticias %}
-    <section class="grid grid-cols-2 gap-4 aspect-auto place-content-end place-items-center md:gap-y-4 md:gap-x-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+    <section class="grid p-4 rounded-[10px] grid-cols-2 gap-4 aspect-auto place-content-end place-items-center md:gap-y-4 md:gap-x-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {% for noticia in noticias %}
             <article class="m-auto relative aspect-auto {% if forloop.first %}col-span-2 row-span-2 w-[19rem] h-[19rem] md:w-[24rem] md:h-[24rem] lg:w-[28rem] lg:h-[28rem]{% else %}col-span-1 row-span-1 w-[9.5rem] h-[12rem] md:w-[12rem] md:h-[13rem] lg:w-[14rem] lg:h-[15rem]{% endif %} items-hover">
                    <a href="{% url 'noticias:noticia' year=noticia.fecha.year month=noticia.fecha.month day=noticia.fecha.day id=noticia.id %}">
