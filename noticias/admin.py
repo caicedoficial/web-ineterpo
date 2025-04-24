@@ -4,6 +4,7 @@ from .models import Noticias, ArchivosNoticias
 class ArchivosNoticiasAdmin(admin.TabularInline):
     model = ArchivosNoticias
     extra = 1
+    fields = ('archivo', 'archivo_url','tipo_archivo')
 
 class NoticiasAdmin(admin.ModelAdmin):
     list_display = ('titulo', 'fecha', 'id')

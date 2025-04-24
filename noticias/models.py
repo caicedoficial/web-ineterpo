@@ -51,6 +51,11 @@ class ArchivosNoticias(models.Model):
         filename = f'{uuid4()}.{ext}'
         return os.path.join(f'noticias/{instance.noticia.fecha.year}/{instance.noticia.fecha.month}/{instance.noticia.fecha.day}/{instance.noticia.id}/', filename)
     
+    archivo = models.FileField(upload_to=archivo_ruta, blank=True, null=True)
+    archivo_url = models.URLField("Enlace directo al archivo", max_length=500, blank=True, null=True,
+                                   help_text="Pega aquí la URL si el archivo es muy grande o ya está en S3.")
+    tipo_archivo = models.CharField(max_length=20, choices=TIPO_ARCHIVO_CHOICES)
+
     def es_imagen(self):
         return self.archivo.name.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp'))
     
@@ -59,9 +64,6 @@ class ArchivosNoticias(models.Model):
     
     def es_documento(self):
         return self.archivo.name.lower().endswith(('.pdf', '.doc', '.docx', '.txt'))
-
-    archivo = models.FileField(upload_to=archivo_ruta)
-    tipo_archivo = models.CharField(max_length=20, choices=TIPO_ARCHIVO_CHOICES)
 
     class Meta:
         verbose_name = "archivo"
