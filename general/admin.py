@@ -1,12 +1,9 @@
 from django.contrib import admin
 from .models import Institucional, ArchivosInstitucional, Eventos, ArchivosEventos, Implementaciones, ArchivosImplementaciones
 
-class BaseImagenAdmin(admin.TabularInline):
-    extra = 1
-
 class BaseArchivoAdmin(admin.TabularInline):
     extra = 1
-    fields = ('archivo', 'tipo_archivo', 'titulo')
+    fields = ('archivo', 'archivo_url','tipo_archivo')
 
 class BaseModelAdmin(admin.ModelAdmin):
     list_display = ('titulo', 'fecha')
@@ -16,19 +13,16 @@ class BaseModelAdmin(admin.ModelAdmin):
 class ArchivosInstitucionalAdmin(BaseArchivoAdmin):
     model = ArchivosInstitucional
 
-class InstitucionalAdmin(admin.ModelAdmin):
+class InstitucionalAdmin(BaseModelAdmin):
     inlines = [ArchivosInstitucionalAdmin]
-    list_display = ('titulo', 'fecha')
-    search_fields = ('titulo', 'fecha')
-    ordering = ['-fecha']
 
-class ArchivosEventosAdmin(BaseImagenAdmin):
+class ArchivosEventosAdmin(BaseArchivoAdmin):
     model = ArchivosEventos
 
 class EventosAdmin(BaseModelAdmin):
     inlines = [ArchivosEventosAdmin]
 
-class ArchivosImplementacionesAdmin(BaseImagenAdmin):
+class ArchivosImplementacionesAdmin(BaseArchivoAdmin):
     model = ArchivosImplementaciones
 
 class ImplementacionesAdmin(BaseModelAdmin):

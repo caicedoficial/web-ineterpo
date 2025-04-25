@@ -36,9 +36,10 @@ class Noticias(models.Model):
         return self.titulo
 
     def delete(self, *args, **kwargs):
-        for imagen in self.imagenes.all():
-            imagen.imagen.delete()
+        for archivo in self.archivos.all():
+            archivo.delete()  # Esto invocará el delete() del modelo ArchivosNoticias
         super().delete(*args, **kwargs)
+
     
     def formatted_fecha(self):
         return self.fecha.strftime('%d %b %Y')
@@ -53,11 +54,13 @@ class ArchivosNoticias(models.Model):
     
     archivo_url = models.URLField("Enlace directo al archivo", max_length=500, blank=True, null=True,
                                    help_text="Pega aquí la URL si el archivo es muy grande o ya está en S3.")
-    if archivo_url:
-        archivo = models.FileField(archivo_url, blank=True, null=True, help_text="Si el archivo es muy grande o ya está en S3, pega aquí la URL.")
-
     archivo = models.FileField(upload_to=archivo_ruta, blank=True, null=True)
     tipo_archivo = models.CharField(max_length=20, choices=TIPO_ARCHIVO_CHOICES)
+
+    def delete(self, *args, **kwargs):
+        if self.archivo:
+            self.archivo.delete(save=False)
+        super().delete(*args, **kwargs)
 
     def clean(self):
         # Evitar que se llenen ambos campos
@@ -68,13 +71,17 @@ class ArchivosNoticias(models.Model):
             raise ValidationError("Debes subir un archivo o ingresar una URL.")
 
     def es_imagen(self):
-        return self.archivo.name.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp'))
-    
+        nombre = self.archivo.name if self.archivo else self.archivo_url or ""
+        return nombre.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp'))
+
     def es_video(self):
-        return self.archivo.name.lower().endswith(('.mp4', '.webm', '.ogg'))
-    
+        nombre = self.archivo.name if self.archivo else self.archivo_url or ""
+        return nombre.lower().endswith(('.mp4', '.webm', '.ogg'))
+
     def es_documento(self):
-        return self.archivo.name.lower().endswith(('.pdf', '.doc', '.docx', '.txt'))
+        nombre = self.archivo.name if self.archivo else self.archivo_url or ""
+        return nombre.lower().endswith(('.pdf', '.doc', '.docx', '.txt'))
+
 
     class Meta:
         verbose_name = "archivo"

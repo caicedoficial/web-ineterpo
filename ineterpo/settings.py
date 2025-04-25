@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [".vercel.app", "localhost", "127.0.0.1", "web-ineterpo.vercel.app"]
 
@@ -164,6 +164,9 @@ STORAGES = {
         "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
     },
 }
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 
 # en settings.py
 DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760

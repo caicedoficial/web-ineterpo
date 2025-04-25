@@ -3,13 +3,22 @@ from django.apps import apps
 from django.http import HttpResponseServerError
 from .models import Institucional, Eventos, Implementaciones
 from django.utils.timezone import localtime
+from django.db.models import Q
 
 def institucional(request):
     try:
+        queryset = request.GET.get('search')
         institucional = Institucional.objects.all().order_by('-fecha')[:10]
+
+        if queryset:
+            institucional = Institucional.objects.filter(
+                Q(titulo__icontains=queryset) | Q(descripcion__icontains=queryset) | Q(tipo__icontains=queryset)
+            ).distinct().order_by('-fecha')
+
         
         for ins in institucional:
             ins.fecha = localtime(ins.fecha)
+
         return render(request, 'general.html', {'objetos': institucional, 'modelo': 'Institucional'})
 
     except Exception as e:
@@ -17,7 +26,13 @@ def institucional(request):
 
 def eventos(request):
     try:
+        queryset = request.GET.get('search')
         eventos = Eventos.objects.all().order_by('-fecha')[:10]
+
+        if queryset:
+            eventos = Eventos.objects.filter(
+                Q(titulo__icontains=queryset) | Q(descripcion__icontains=queryset) | Q(tipo__icontains=queryset)
+            ).distinct().order_by('-fecha')
 
         for evento in eventos:
             evento.fecha = localtime(evento.fecha)
@@ -28,7 +43,13 @@ def eventos(request):
 
 def implementaciones(request):
     try:
+        queryset = request.GET.get('search')
         implementaciones = Implementaciones.objects.all().order_by('-fecha')[:10]
+
+        if queryset:
+            implementaciones = Implementaciones.objects.filter(
+                Q(titulo__icontains=queryset) | Q(descripcion__icontains=queryset)
+            ).distinct().order_by('-fecha')
 
         for implementacion in implementaciones:
             implementacion.fecha = localtime(implementacion.fecha)
@@ -39,8 +60,16 @@ def implementaciones(request):
 
 def total_modelo(request, modelo):
     try:
-        ModelClass = apps.get_model('general', modelo)
-        objetos = ModelClass.objects.all().order_by('-fecha')
+        queryset = request.GET.get('search')
+        if queryset:
+            ModelClass = apps.get_model('general', modelo)
+            objetos = ModelClass.objects.filter(
+                Q(titulo__icontains=queryset) | Q(descripcion__icontains=queryset) | Q(tipo__icontains=queryset) if modelo == 'Eventos' else None
+            ).distinct().order_by('-fecha')
+        else:
+            ModelClass = apps.get_model('general', modelo)
+            objetos = ModelClass.objects.all().order_by('-fecha')
+
         return render(request, 'general.html', {'objetos': objetos, 'check': True, 'modelo': modelo})
     except Exception as e:
         return HttpResponseServerError(f"Error al obtener datos del modelo {modelo}: {e}")

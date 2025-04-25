@@ -11,7 +11,7 @@ def noticias(request):
     if queryset:
         noticias = Noticias.objects.filter(
             Q(titulo__icontains=queryset) | Q(descripcion__icontains=queryset) | Q(tipo__icontains=queryset)
-        ).distinct().order_by('-fecha')[:7]
+        ).distinct().order_by('-fecha')
 
     for noticia in noticias:
         noticia.fecha = localtime(noticia.fecha)

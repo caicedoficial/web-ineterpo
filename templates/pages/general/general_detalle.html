@@ -25,56 +25,20 @@
             <div class="relative overflow-hidden">
                 <ul class="flex w-full transition-transform duration-500 ease-in-out aspect-auto" id="carousel">
                     {% for archivo in objeto.archivos.all %}
-                        {% if not archivo.archivo_url.url %}
-                            <li class="w-full flex-shrink-0 transition-transform aspect-auto">
-                                {% if archivo.es_imagen %}
-                                    <img class="h-[20rem] object-contain mx-auto aspect-auto" loading="lazy" 
-                                        src="{{ archivo.archivo.url }}" alt="{{ archivo.titulo|default:'Imagen' }}">
-                                {% elif archivo.es_video %}
-                                    <video class="h-[20rem] object-contain mx-auto aspect-auto" controls>
-                                        <source src="{{ archivo.archivo.url }}" type="video/mp4">
-                                        Tu navegador no soporta el elemento de video.
-                                    </video>
-                                {% elif archivo.es_documento %}
-                                    <div class="flex flex-col items-center justify-center h-[20rem] bg-gray-100 mx-auto">
-                                        <svg class="w-16 h-16 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M4 18h12V6H4v12zM4 4h12V2H4v2zm0-4h12c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V2c0-1.1.9-2 2-2z"/>
-                                        </svg>
-                                        <a href="{{ archivo.archivo.url }}" 
-                                        class="mt-4 px-4 py-2 bg-primary text-white rounded hover:bg-primary/80"
-                                        target="_blank" 
-                                        download>
-                                            Descargar {{ archivo.titulo|default:'documento' }}
-                                        </a>
-                                    </div>
-                                {% endif %}
-                            </li>
-                        {% else %}
-                            <li class="w-full flex-shrink-0 transition-transform aspect-auto">
-                                {% if archivo.es_imagen %}
-                                    <img class="h-[20rem] object-contain mx-auto aspect-auto" loading="lazy" 
-                                        src="{{ archivo.archivo_url.url }}" alt="{{ archivo.titulo|default:'Imagen' }}">
-                                {% elif archivo.es_video %}
-                                    <video class="h-[20rem] object-contain mx-auto aspect-auto" controls>
-                                        <source src="{{ archivo.archivo_url.url }}" type="video/mp4">
-                                        Tu navegador no soporta el elemento de video.
-                                    </video>
-                                {% elif archivo.es_documento %}
-                                    <div class="flex flex-col items-center justify-center h-[20rem] bg-gray-100 mx-auto">
-                                        <svg class="w-16 h-16 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M4 18h12V6H4v12zM4 4h12V2H4v2zm0-4h12c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V2c0-1.1.9-2 2-2z"/>
-                                        </svg>
-                                        <a href="{{ archivo.archivo_url.url }}" 
-                                        class="mt-4 px-4 py-2 bg-primary text-white rounded hover:bg-primary/80"
-                                        target="_blank" 
-                                        download>
-                                            Descargar {{ archivo.titulo|default:'documento' }}
-                                        </a>
-                                    </div>
-                                {% endif %}
-                            </li>
+                        {% if archivo.archivo %}
+                            {% with archivo.archivo.url as file_url %}
+                                <li class="w-full flex-shrink-0 transition-transform aspect-auto">
+                                    {% include "components/archivo_render.html" %}
+                                </li>
+                            {% endwith %}
+                        {% elif archivo.archivo_url %}
+                            {% with archivo.archivo_url as file_url %}
+                                <li class="w-full flex-shrink-0 transition-transform aspect-auto">
+                                    {% include "components/archivo_render.html" %}
+                                </li>
+                            {% endwith %}
                         {% endif %}
-                    {% endfor %}
+                {% endfor %}
                 </ul>
                 {% if objeto.archivos.count > 1 %}
                 <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-primary p-2 text-white hover:bg-primary/80" id="prevBtn">

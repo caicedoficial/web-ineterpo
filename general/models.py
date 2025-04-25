@@ -2,6 +2,8 @@ from django.db import models
 from uuid import uuid4
 import os
 from tinymce.models import HTMLField
+from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 TIPO_EVENTO = (
     ('Dia del Idioma', 'Dia del Idioma'),
@@ -21,7 +23,7 @@ TIPO_ARCHIVO_CHOICES = (
 class BaseModel(models.Model):
     titulo = models.CharField("Titulo", max_length=100)
     descripcion = HTMLField()
-    fecha = models.DateTimeField(auto_now_add=True)
+    fecha = models.DateTimeField(auto_now_add=timezone.now)
 
     class Meta:
         abstract = True
@@ -42,7 +44,26 @@ class Institucional(BaseModel):
         verbose_name = "Institucional"
         verbose_name_plural = "Institucional"
 
-class Eventos(BaseModel):
+class Eventos(models.Model):
+    titulo = models.CharField("Titulo", max_length=100)
+    descripcion = HTMLField()
+    fecha = models.DateTimeField(auto_now_add=timezone.now)
+    tipo = models.CharField("Tipo de Evento", max_length=20, choices=TIPO_EVENTO)
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.titulo
+
+    def formatted_fecha(self):
+        return self.fecha.strftime('%d %b %Y')
+
+    def delete(self, *args, **kwargs):
+        for imagen in self.imagenes.all():
+            imagen.imagen.delete()
+        super().delete(*args, **kwargs)
+
     class Meta:
         verbose_name = "Evento"
         verbose_name_plural = "Eventos"
@@ -59,18 +80,36 @@ class ArchivosInstitucional(models.Model):
         ext = filename.split('.')[-1]
         filename = f'{uuid4()}.{ext}'
         return os.path.join(f'institucional/{instance.institucional.fecha.year}/{instance.institucional.fecha.month}/{instance.institucional.fecha.day}/{instance.institucional.id}', filename)
-    
-    def es_imagen(self):
-        return self.archivo.name.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp'))
-    
-    def es_video(self):
-        return self.archivo.name.lower().endswith(('.mp4', '.webm', '.ogg'))
-    
-    def es_documento(self):
-        return self.archivo.name.lower().endswith(('.pdf', '.doc', '.docx', '.txt'))
 
-    archivo = models.FileField(upload_to=archivo_ruta)
+    archivo = models.FileField(upload_to=archivo_ruta, blank=True, null=True)
+    archivo_url = models.URLField("Enlace directo al archivo", max_length=500, blank=True, null=True,
+                                   help_text="Pega aquí la URL si el archivo es muy grande o ya está en S3.")
     tipo_archivo = models.CharField(max_length=20, choices=TIPO_ARCHIVO_CHOICES)
+
+    def delete(self, *args, **kwargs):
+        if self.archivo:
+            self.archivo.delete(save=False)
+        super().delete(*args, **kwargs)
+
+    def clean(self):
+        # Evitar que se llenen ambos campos
+        if self.archivo and self.archivo_url:
+            raise ValidationError("No puedes subir un archivo y también ingresar una URL. Usa solo uno.")
+        # Evitar que ambos estén vacíos
+        if not self.archivo and not self.archivo_url:
+            raise ValidationError("Debes subir un archivo o ingresar una URL.")
+
+    def es_imagen(self):
+        nombre = self.archivo.name if self.archivo else self.archivo_url or ""
+        return nombre.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp'))
+
+    def es_video(self):
+        nombre = self.archivo.name if self.archivo else self.archivo_url or ""
+        return nombre.lower().endswith(('.mp4', '.webm', '.ogg'))
+
+    def es_documento(self):
+        nombre = self.archivo.name if self.archivo else self.archivo_url or ""
+        return nombre.lower().endswith(('.pdf', '.doc', '.docx', '.txt'))
 
     class Meta:
         verbose_name = "archivo"
@@ -86,18 +125,36 @@ class ArchivosEventos(models.Model):
         ext = filename.split('.')[-1]
         filename = f'{uuid4()}.{ext}'
         return os.path.join(f'eventos/{instance.evento.fecha.year}/{instance.evento.fecha.month}/{instance.evento.fecha.day}/{instance.evento.id}', filename)
-    
-    def es_imagen(self):
-        return self.archivo.name.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp'))
-    
-    def es_video(self):
-        return self.archivo.name.lower().endswith(('.mp4', '.webm', '.ogg'))
-    
-    def es_documento(self):
-        return self.archivo.name.lower().endswith(('.pdf', '.doc', '.docx', '.txt'))
 
-    archivo = models.FileField(upload_to=archivo_ruta)
+    archivo = models.FileField(upload_to=archivo_ruta, blank=True, null=True)
+    archivo_url = models.URLField("Enlace directo al archivo", max_length=500, blank=True, null=True,
+                                   help_text="Pega aquí la URL si el archivo es muy grande o ya está en S3.")
     tipo_archivo = models.CharField(max_length=20, choices=TIPO_ARCHIVO_CHOICES)
+
+    def delete(self, *args, **kwargs):
+        if self.archivo:
+            self.archivo.delete(save=False)
+        super().delete(*args, **kwargs)
+
+    def clean(self):
+        # Evitar que se llenen ambos campos
+        if self.archivo and self.archivo_url:
+            raise ValidationError("No puedes subir un archivo y también ingresar una URL. Usa solo uno.")
+        # Evitar que ambos estén vacíos
+        if not self.archivo and not self.archivo_url:
+            raise ValidationError("Debes subir un archivo o ingresar una URL.")
+
+    def es_imagen(self):
+        nombre = self.archivo.name if self.archivo else self.archivo_url or ""
+        return nombre.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp'))
+
+    def es_video(self):
+        nombre = self.archivo.name if self.archivo else self.archivo_url or ""
+        return nombre.lower().endswith(('.mp4', '.webm', '.ogg'))
+
+    def es_documento(self):
+        nombre = self.archivo.name if self.archivo else self.archivo_url or ""
+        return nombre.lower().endswith(('.pdf', '.doc', '.docx', '.txt'))
 
     class Meta:
         verbose_name = "archivo"
@@ -113,18 +170,36 @@ class ArchivosImplementaciones(models.Model):
         ext = filename.split('.')[-1]
         filename = f'{uuid4()}.{ext}'
         return os.path.join(f'implementaciones/{instance.implementacion.fecha.year}/{instance.implementacion.fecha.month}/{instance.implementacion.fecha.day}/{instance.implementacion.id}', filename)
-    
-    def es_imagen(self):
-        return self.archivo.name.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp'))
-    
-    def es_video(self):
-        return self.archivo.name.lower().endswith(('.mp4', '.webm', '.ogg'))
-    
-    def es_documento(self):
-        return self.archivo.name.lower().endswith(('.pdf', '.doc', '.docx', '.txt'))
 
-    archivo = models.FileField(upload_to=archivo_ruta)
+    archivo = models.FileField(upload_to=archivo_ruta, blank=True, null=True)
+    archivo_url = models.URLField("Enlace directo al archivo", max_length=500, blank=True, null=True,
+                                   help_text="Pega aquí la URL si el archivo es muy grande o ya está en S3.")
     tipo_archivo = models.CharField(max_length=20, choices=TIPO_ARCHIVO_CHOICES)
+
+    def delete(self, *args, **kwargs):
+        if self.archivo:
+            self.archivo.delete(save=False)
+        super().delete(*args, **kwargs)
+
+    def clean(self):
+        # Evitar que se llenen ambos campos
+        if self.archivo and self.archivo_url:
+            raise ValidationError("No puedes subir un archivo y también ingresar una URL. Usa solo uno.")
+        # Evitar que ambos estén vacíos
+        if not self.archivo and not self.archivo_url:
+            raise ValidationError("Debes subir un archivo o ingresar una URL.")
+
+    def es_imagen(self):
+        nombre = self.archivo.name if self.archivo else self.archivo_url or ""
+        return nombre.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp'))
+
+    def es_video(self):
+        nombre = self.archivo.name if self.archivo else self.archivo_url or ""
+        return nombre.lower().endswith(('.mp4', '.webm', '.ogg'))
+
+    def es_documento(self):
+        nombre = self.archivo.name if self.archivo else self.archivo_url or ""
+        return nombre.lower().endswith(('.pdf', '.doc', '.docx', '.txt'))
 
     class Meta:
         verbose_name = "archivo"
