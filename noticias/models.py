@@ -37,7 +37,7 @@ class Noticias(models.Model):
 
     def delete(self, *args, **kwargs):
         for archivo in self.archivos.all():
-            archivo.delete()  # Esto invocará el delete() del modelo ArchivosNoticias
+            archivo.delete() 
         super().delete(*args, **kwargs)
 
     
