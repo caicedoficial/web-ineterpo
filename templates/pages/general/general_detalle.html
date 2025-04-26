@@ -7,7 +7,9 @@
             <h1 class="text-2xl md:text-4xl font-source max-w-[40ch] text-balance font-bold">
                 {% block title %}{{ objeto.titulo }}{% endblock %}
             </h1>
-            <a href="{{ request.build_absolute_uri }}" target="_blank">Compartir</a>
+            <a href="{{ request.build_absolute_uri }}" target="_blank">
+                <button>Compartir</button>    
+            </a>
         </div>
         <div class="flex items-center pt-2 justify-between gap-4 border-t-2 border-black md:gap-8"> 
             <p class="text-[0.875rem] md:text-lg font-source font-extralight italic lowercase bg-primary px-2 py-1 text-white">
