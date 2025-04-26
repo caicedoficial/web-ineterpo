@@ -7,7 +7,7 @@
             <h1 class="text-2xl md:text-4xl font-source max-w-[40ch] text-balance font-bold">
                 {% block title %}{{ objeto.titulo }}{% endblock %}
             </h1>
-            <a href="{{ request.build_absolute_uri }}" target="_blank">
+            <a href="https://wa.me/?text={{ request.build_absolute_uri }}" target="_blank">
                 <button>Compartir</button>    
             </a>
         </div>
