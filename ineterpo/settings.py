@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'tinymce',
     'whitenoise',
     'storages',
+    'django_social_share',
 ]
 
 # Add TinyMCE configuration
