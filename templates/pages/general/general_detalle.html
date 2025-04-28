@@ -1,13 +1,16 @@
 {% extends 'index.html' %}{% load static %}{% load social_share %}
 
 {% block content %}
-<main class="grid gap-y-8 mx-auto mb-8 p-2 max-w-[1140px] w-full">
+<main class="grid gap-y-4 mx-auto mb-8 p-2 max-w-[1140px] w-full">
     <section class="grid md:gap-2">
-        <div class="flex flex-wrap items-center gap-2 md:gap-4 justify-between">
+        <div class="flex flex-wrap items-center gap-10 md:gap-12 justify-between">
             <h1 class="text-2xl md:text-4xl font-source max-w-[40ch] text-balance font-bold">
                 {% block title %}{{ objeto.titulo }}{% endblock %}
             </h1>
-            {% post_to_facebook object_or_url "Facebook" %}
+            <div class="flex gap-2 md:flex-col">
+                {% post_to_facebook object_or_url "<img src='https://cdn-icons-png.flaticon.com/128/5968/5968764.png' width='32'>" %}
+                {% post_to_whatsapp object_or_url "<img src='https://cdn-icons-png.flaticon.com/128/3670/3670051.png' width='32'>" %}
+            </div>
         </div>
         <div class="flex items-center pt-2 justify-between gap-4 border-t-2 border-black md:gap-8"> 
             <p class="text-[0.875rem] md:text-lg font-source font-extralight italic lowercase bg-primary px-2 py-1 text-white">
@@ -21,7 +24,7 @@
         </div>
     </section>
     
-    <section class="flex flex-col gap-8">
+    <section class="flex flex-col gap-2">
         <!-- Sección de archivos multimedia -->
         <div class="flex-1">
             {% if objeto.archivos.exists %}
@@ -58,12 +61,10 @@
             </div>
             {% endif %}
         </div>
-
-        <!-- Contenido de la descripción -->
-        <div class="flex-1">
-            <div class="prose md:prose-lg max-w-none font-source leading-[1.5] text-black/80">
-                {{ objeto.descripcion|safe }}
-            </div>
+    </section>
+    <section>
+        <div class="prose md:prose-lg max-w-none font-source leading-[1.5] text-black/80">
+            {{ objeto.descripcion|safe }}
         </div>
     </section>
 </main>
