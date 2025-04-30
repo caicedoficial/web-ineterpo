@@ -22,12 +22,19 @@ TIPO_ARCHIVO_CHOICES = (
         ('otro', 'Otro'),
     )
 
+JORNADAS = (
+    ('Mañana', 'Mañana'),
+    ('Tarde', 'Tarde'),
+    ('Nocturna', 'Nocturna'),
+)
+
 class Noticias(models.Model):
     titulo = models.CharField("Titulo", max_length=100)
     descripcion = HTMLField()
     fecha = models.DateTimeField(auto_now_add=timezone.now)
     tipo = models.CharField("Tipo de Noticia", max_length=20, choices=TIPOS_NOTICIAS, default='general')
-    
+    jornada = models.CharField("Jornada", max_length=20, choices=JORNADAS, default='Mañana')
+
     class Meta:
         verbose_name = "Noticia"
         verbose_name_plural = "Noticias"

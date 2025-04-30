@@ -20,10 +20,17 @@ TIPO_ARCHIVO_CHOICES = (
         ('otro', 'Otro'),
     )
 
+JORNADAS = (
+    ('Mañana', 'Mañana'),
+    ('Tarde', 'Tarde'),
+    ('Nocturna', 'Nocturna'),
+)
+
 class BaseModel(models.Model):
     titulo = models.CharField("Titulo", max_length=100)
     descripcion = HTMLField()
     fecha = models.DateTimeField(auto_now_add=timezone.now)
+    jornada = models.CharField("Jornada", max_length=20, choices=JORNADAS, default='Mañana')
 
     class Meta:
         abstract = True
@@ -49,6 +56,7 @@ class Eventos(models.Model):
     descripcion = HTMLField()
     fecha = models.DateTimeField(auto_now_add=timezone.now)
     tipo = models.CharField("Tipo de Evento", max_length=20, choices=TIPO_EVENTO)
+    jornada = models.CharField("Jornada", max_length=20, choices=JORNADAS, default='Mañana')
 
     class Meta:
         abstract = True
