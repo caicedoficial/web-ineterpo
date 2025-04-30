@@ -33,7 +33,7 @@ class Noticias(models.Model):
     descripcion = HTMLField()
     fecha = models.DateTimeField(auto_now_add=timezone.now)
     tipo = models.CharField("Tipo de Noticia", max_length=20, choices=TIPOS_NOTICIAS, default='general')
-    jornada = models.CharField("Jornada", max_length=20, choices=JORNADAS, default='Mañana')
+    jornada = models.CharField("Jornada", max_length=20, choices=JORNADAS, default='General')
 
     class Meta:
         verbose_name = "Noticia"
