@@ -26,6 +26,7 @@ JORNADAS = (
     ('Mañana', 'Mañana'),
     ('Tarde', 'Tarde'),
     ('Nocturna', 'Nocturna'),
+    ('General', 'General'),
 )
 
 class Noticias(models.Model):
