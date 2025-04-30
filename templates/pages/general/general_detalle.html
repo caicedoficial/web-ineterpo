@@ -13,12 +13,12 @@
             </div>
         </div>
         <div class="flex items-center pt-2 justify-between gap-4 border-t-2 border-black md:gap-8"> 
-            <p class="text-[0.875rem] md:text-lg font-source font-extralight italic lowercase bg-primary px-2 py-1 text-white">
+            <p class="text-[0.875rem] md:text-[1rem] font-source font-extralight italic lowercase bg-primary px-2 py-1 text-white">
                 {{ objeto.formatted_fecha }} - {{ objeto.fecha|time }}
             </p>
             {% if objeto.tipo %}
-                <p class="text-end text-[0.875rem] md:text-lg font-source font-light uppercase text-red-700">
-                    {{ objeto.tipo }}
+                <p class="text-end text-[0.875rem] md:text-[1rem] font-source font-light uppercase text-red-700">
+                    {{ objeto.tipo }} - {{ objeto.jornada }}
                 </p>
             {% endif %}
         </div>

@@ -17,10 +17,10 @@
             alt="Imagen de la noticia {{ objeto.titulo }}" loading="lazy">
     {% endif %}
 </div>
-<small class="absolute top-0 right-0 px-2 py-1 lowercase bg-primary text-white text-[10px] md:text-[12px]"> {{ objeto.formatted_fecha }} </small>
+<small class="absolute top-0 right-0 px-2 py-1 lowercase bg-primary text-white text-[10px] md:text-[12px]">{{ objeto.formatted_fecha }}</small>
 <div class="grid py-2">
     {% if objeto.tipo %}
-        <p class="text-[9.5px] text-red-700 uppercase font-source font-extralight tracking-wider lg:text-[12px]"> {{ objeto.tipo }} </p>
+        <p class="text-[9.5px] text-red-700 uppercase font-source font-extralight tracking-wider lg:text-[12px]">{{ objeto.tipo }} - {{ noticia.jornada }}</p>
     {% endif %}
     <h1 class="text-black font-source truncate text-[14px] font-bold lg:text-[19px]">{{ objeto.titulo }}</h1>
     <div class="prose line-clamp-2 max-w-none leading-[1.2] font-source font-light text-black/80">{{ objeto.descripcion|safe }}</div>

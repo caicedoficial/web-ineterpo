@@ -12,7 +12,7 @@ def institucional(request):
 
         if queryset:
             institucional = Institucional.objects.filter(
-                Q(titulo__icontains=queryset) | Q(descripcion__icontains=queryset) | Q(tipo__icontains=queryset)
+                Q(titulo__icontains=queryset) | Q(descripcion__icontains=queryset) | Q(jornada__icontains=queryset)
             ).distinct().order_by('-fecha')
 
         
@@ -31,7 +31,7 @@ def eventos(request):
 
         if queryset:
             eventos = Eventos.objects.filter(
-                Q(titulo__icontains=queryset) | Q(descripcion__icontains=queryset) | Q(tipo__icontains=queryset)
+                Q(titulo__icontains=queryset) | Q(descripcion__icontains=queryset) | Q(tipo__icontains=queryset) | Q(jornada__icontains=queryset)
             ).distinct().order_by('-fecha')
 
         for evento in eventos:
@@ -48,7 +48,7 @@ def implementaciones(request):
 
         if queryset:
             implementaciones = Implementaciones.objects.filter(
-                Q(titulo__icontains=queryset) | Q(descripcion__icontains=queryset)
+                Q(titulo__icontains=queryset) | Q(descripcion__icontains=queryset) | Q(jornada__icontains=queryset)
             ).distinct().order_by('-fecha')
 
         for implementacion in implementaciones:
@@ -64,7 +64,7 @@ def total_modelo(request, modelo):
         if queryset:
             ModelClass = apps.get_model('general', modelo)
             objetos = ModelClass.objects.filter(
-                Q(titulo__icontains=queryset) | Q(descripcion__icontains=queryset) | Q(tipo__icontains=queryset) if modelo == 'Eventos' else None
+                Q(titulo__icontains=queryset) | Q(descripcion__icontains=queryset) | Q(jornada__icontains=queryset) | Q(tipo__icontains=queryset) if modelo == 'Eventos' else None
             ).distinct().order_by('-fecha')
         else:
             ModelClass = apps.get_model('general', modelo)
