@@ -1,7 +1,23 @@
 {% extends 'index.html' %}{% block title %}Inicio{% endblock%}{% load static %}
 
 {% block content %}
-<section class="grid inicio">
+<section class="grid gap-6 md:gap-12">
+    {% include 'components/CarruselInicio.html' %}
+    <section class="grid gap-y-4">
+        <h2 class="text-primary text-center md:text-left text-[20px] font-source font-bold md:text-[24px] uppercase">Ultimos comunicados oficiales</h2>
+        {% if comunicados %}
+            <div class="grid grid-cols-2 gap-x-2 aspect-auto place-content-end place-items-center md:gap-x-6 md:grid-cols-4">
+            {% for comunicado in comunicados %}
+                <article class="relative aspect-auto w-[9.5rem] h-[12rem] md:w-[12rem] md:h-[13rem] lg:w-[14rem] lg:h-[15rem] items-hover">
+                    <a href="{% url 'noticias:noticia' year=comunicado.fecha.year month=comunicado.fecha.month day=comunicado.fecha.day id=comunicado.id %}">
+                        {% include 'components/ComunicadosOficial.html' %}
+                    </a>
+                </article>
+            {% endfor %}
+            </div>
+        {% endif %}
+    </section>
+    {% include 'components/ManualConvivencia.html' %}
     {% include 'components/InformaciónItems.html' %}
 </section>
 {% endblock %}
