@@ -9,6 +9,7 @@ module.exports = {
       },
       fontFamily: {
         source: ['Source Sans 3', 'serif'],
+        playfair: ['Playfair Display', 'serif'],
       }
     },
   },

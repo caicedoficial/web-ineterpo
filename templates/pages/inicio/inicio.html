@@ -3,9 +3,9 @@
 {% block content %}
 <section class="grid gap-6 md:gap-12">
     {% include 'components/CarruselInicio.html' %}
-    <div class="flex gap-y-4 gap-x-10 flex-col md:flex-row">
+    <div class="flex gap-y-4 gap-x-10 flex-col flex-wrap md:flex-col lg:flex-row">
         <section class="flex flex-col justify-center items-center gap-y-4 flex-1">
-            <h2 class="text-primary text-center text-[20px] font-source font-bold md:text-[24px] uppercase">Ultima noticia</h2>
+            <h2 class="text-primary text-center text-[20px] font-playfair font-bold md:text-[24px] uppercase">Ultima noticia</h2>
             {% if noticia %}
                 {% for n in noticia %}
                     <article class="relative aspect-auto w-[19rem] h-[19rem] md:w-[24rem] md:h-[24rem] items-hover">
@@ -16,6 +16,7 @@
                 {% endfor %}
             {% endif %}
         </section>
+        {% include 'components/49Años.html' %}
         {% include 'components/Zeti.html' %}
     </div>
     {% include 'components/ManualConvivencia.html' %}
