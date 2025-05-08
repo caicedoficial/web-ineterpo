@@ -1,0 +1,27 @@
+{% load static %}
+<div class="primer-elemento flex flex-col md:flex-row justify-between min-h-[400px] py-8 px-8">
+    <section class="flex flex-col gap-4 md:flex-1 md:border-r-2">
+        <div class="flex flex-col gap-4">
+            <h1 class="text-white font-bold font-source text-[28px] leading-[1.14] md:text-[32px]">Bienvenido a nuestra WEB</h1>
+            <p class="text-white font-source text-[18px] leading-[1.14] italic md:text-[20px]">49 años de educación de calidad para el pacifico</p>
+        </div>
+        <img src="{% static 'images/ineterpo.webp' %}" alt="" class="hidden m-auto md:block w-48 h-48 md:w-38 md:h-38 drop-shadow-lg">
+    </section>
+    <section class="flex flex-col justify-end gap-2 md:flex-1">
+        <h2 class="text-[20px] text-white font-medium font-source leading-[1.14] md:text-end md:text-[24px]">Conoce mas de nuestra institución educativa</h2>
+        <div class="flex flex-row flex-wrap justify-between md:justify-end items-center gap-2">
+            <a href="" class="flex items-center gap-x-1 bg-white w-[10rem] rounded-[5px] px-4 py-1.5 shadow-lg">
+                <img src="https://d25vmi1tatpf6d.cloudfront.net/icons/inicio/dardo.webp" class="w-8 h-8 drop-shadow-md" alt="">
+                <span class="font-source text-[18px] text-primary font-black md:font-bold">Misión</span>
+            </a>
+            <a href="" class="flex items-center gap-x-1 bg-white w-[10rem] rounded-[5px] px-4 py-1.5 shadow-lg">
+                <img src="https://d25vmi1tatpf6d.cloudfront.net/icons/inicio/telescopio.webp" class="w-8 h-8 drop-shadow-md" alt="">
+                <span class="font-source text-[18px] text-primary font-black md:font-bold">Visión</span>
+            </a>
+            <a href="" class="flex items-center gap-x-1 bg-white w-[10rem] rounded-[5px] px-4 py-1.5 shadow-lg">
+                <img src="https://d25vmi1tatpf6d.cloudfront.net/icons/inicio/trompeta.webp" class="w-8 h-8 drop-shadow-md" alt="">
+                <span class="font-source text-[18px] text-primary font-black md:font-bold">Himno</span>
+            </a>
+        </div>
+    </section>
+</div>

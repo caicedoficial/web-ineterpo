@@ -77,6 +77,7 @@ TEMPLATES = [
         "DIRS": [
             BASE_DIR / "templates",
             BASE_DIR / "templates/layout",
+            BASE_DIR / "templates/pages",
             BASE_DIR / "templates/pages/inicio",
             BASE_DIR / "templates/pages/noticias",
             BASE_DIR / "templates/pages/general",

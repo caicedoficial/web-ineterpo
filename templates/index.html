@@ -7,7 +7,7 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <link rel="stylesheet" href="{% static 'src/output.css?v=11' %}">
+            <link rel="stylesheet" href="{% static 'src/output.css?v=12' %}">
             <script src="{% static 'js/header-nav.js' %}" defer></script>
             <script src="{% static 'js/footer-aliados.js' %}" defer></script>
             <script src="{% static 'js/carrusel.js' %}" defer></script>
@@ -17,10 +17,11 @@
     </head>
     <body class="grid grid-rows-[auto,1fr,auto] min-h-screen mx-auto">
         {% include 'header/header.html' %}
-        <main class="w-full max-w-[1200px] mx-auto md:px-4 my-4">
+        <main class="w-full max-w-[1200px] mx-auto md:px-4 mb-4">
             {% block content %}
             {% endblock %}
         </main>
         {% include 'footer/footer.html' %}
+        {% include 'IconoFlotante.html' %}
     </body>
 </html>
