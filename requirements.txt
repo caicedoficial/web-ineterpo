@@ -2,6 +2,7 @@ anyio==3.7.1
 asgiref==3.8.1
 atomicwrites==1.4.1
 attrs==25.3.0
+babel==2.17.0
 boto3==1.34.59
 botocore==1.34.162
 certifi==2025.1.31

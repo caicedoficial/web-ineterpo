@@ -4,7 +4,7 @@ import os
 from tinymce.models import HTMLField
 from django.core.exceptions import ValidationError
 from django.utils import timezone
-import locale
+from babel.dates import format_datetime
 
 TIPO_EVENTO = (
     ('Dia del Idioma', 'Dia del Idioma'),
@@ -41,8 +41,7 @@ class BaseModel(models.Model):
         return self.titulo
 
     def formatted_fecha(self):
-        locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
-        return self.fecha.strftime('%d de %B de %Y')
+        return format_datetime(self.fecha, format='d \'de\' MMMM \'de\' yyyy', locale='es')
 
     def delete(self, *args, **kwargs):
         for imagen in self.imagenes.all():
