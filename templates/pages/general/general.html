@@ -9,8 +9,8 @@
         </div>
         <div class="px-4">
             <form method="get" class="relative w-full max-w-[600px] mx-auto mt-4 font-source rounded-[10px] overflow-hidden">
-                <input type="text" name="search" placeholder="Buscar" class="w-full py-2 px-4 my-auto rounded-[10px] border border-white focus-within:border-secundary" value="{{ request.GET.search }}">
-                <button type="submit" class="absolute bg-primary h-full px-2 right-0">
+                <input type="text" name="search" placeholder="Buscar" class="w-full py-2 px-4 my-auto rounded-[10px] outline-none" value="{{ request.GET.search }}">
+                <button type="submit" class="absolute bg-primary h-full px-4 right-0 rounded-e-[10px]">
                     <img src="{% static 'icons/header/buscar.webp' %}" alt="Buscar" class="w-[14px] h-[14px] md:w-[18px] md:h-[18px] my-auto" width="18" height="18">
                 </button>
             </form>
@@ -28,7 +28,7 @@
         </section>
         <section class="mx-auto overflow-hidden text-white">
             {% if not check %}
-            <a class="inline-block w-fit border font-source font-bold hover:underline rounded-[10px] text-xl bg-primary px-16 py-2 text-center" 
+            <a class="inline-block w-fit font-source text-[20px] bg-primary px-16 py-2 text-center" 
                 href="{% url 'total_modelo' modelo=modelo|lower %}"> 
                 Ver más
             </a>

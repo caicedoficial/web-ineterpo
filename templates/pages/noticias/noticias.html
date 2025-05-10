@@ -7,9 +7,9 @@
             <h1 class="font-source font-black text-[40px] md:text-[65px] text-white uppercase">{% block title %}{{ modelo }}{% endblock %}</h1> 
         </div>
         <div class="px-4">
-            <form method="get" class="relative w-full max-w-[600px] mx-auto mt-4 font-source rounded-[10px] overflow-hidden">
-                <input type="text" name="search" placeholder="Buscar" class="w-full py-2 px-4 my-auto rounded-[10px] border border-white focus-within:border-secundary" value="{{ request.GET.search }}">
-                <button type="submit" class="absolute bg-primary h-full px-2 right-0">
+            <form method="get" class="relative w-full max-w-[600px] mx-auto mt-4 rounded-[10px] overflow-hidden">
+                <input type="text" name="search" placeholder="Buscar" class="w-full py-2 font-source outline-none px-4 my-auto rounded-[10px]" value="{{ request.GET.search }}">
+                <button type="submit" class="absolute bg-primary h-full px-4 right-0 rounded-e-[10px]">
                     <img src="{% static 'icons/header/buscar.webp' %}" alt="Buscar" class="w-[14px] h-[14px] md:w-[18px] md:h-[18px] my-auto" width="18" height="18">
                 </button>
             </form>
@@ -30,7 +30,7 @@
         {% endfor %}
     </section>
     <section class="mx-auto overflow-hidden text-white">
-        <a class="inline-block w-fit border rounded-[10px] font-source font-semibold text-[16px] bg-primary px-16 py-2 text-center hover:underline" 
+        <a class="inline-block w-fit font-source text-[20px] bg-primary px-16 py-2 text-center" 
             href="{% url 'noticias:total_noticias' %}"> 
             Ver más noticias
         </a>
