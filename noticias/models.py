@@ -4,7 +4,6 @@ from uuid import uuid4
 import os
 from tinymce.models import HTMLField
 from django.core.exceptions import ValidationError
-import locale
 
 TIPOS_NOTICIAS = (
     ('General', 'General'),
@@ -51,8 +50,7 @@ class Noticias(models.Model):
 
     
     def formatted_fecha(self):
-        locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
-        return self.fecha.strftime('%d de %B de %Y')
+        return self.fecha.strftime('%d %b %Y')
 
 class ArchivosNoticias(models.Model):
     noticia = models.ForeignKey(Noticias, on_delete=models.CASCADE, related_name="archivos")
