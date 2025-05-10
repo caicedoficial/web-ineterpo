@@ -4,19 +4,21 @@
 <section class="grid md:gap-12">
     {% include 'components/Bienvenida.html' %}
     <div class="flex flex-col gap-y-4 md:gap-y-8 py-8 px-4">
-        <h2 class="text-[24px] md:text-[32px] font-source font-black text-primary uppercase leading-none">Accesos directos</h2>
-        <p class="font-source font-light text-[1rem] leading-none">Desliza hacia la derecha para ver todos lo accesos directos.</p>
-        <ul class="carousel border-t-2">
+        <div class="flex flex-col gap-y-2">
+            <h2 class="text-[24px] md:text-[32px] font-source font-black text-primary uppercase leading-none">Accesos directos</h2>
+            <p class="font-source font-light text-[1rem] leading-none">Desliza hacia la derecha para ver todos lo accesos directos.</p>
+        </div>
+        <ul class="carousel border-t-2 md:border-t-0">
             <li class="w-full h-full">
                 {% include 'components/Zeti.html' %}
             </li>
             <li class="w-full h-full">
-                <section class="flex flex-col m-auto gap-y-4 md:gap-y-8 items-center justify-center w-full h-full">
-                    <h2 class="text-primary text-[20px] font-playfair font-bold md:text-[24px]">Ultima noticia</h2>
+                <section class="flex flex-col w-full h-full m-auto gap-y-2 md:gap-y-6 items-center justify-center">
+                    <h2 class="text-primary text-[20px] font-playfair w-full text-left md:text-center font-bold md:text-[24px]">Ultima noticia</h2>
                     {% if noticia %}
                         {% for n in noticia %}
-                            <article class="relative aspect-auto w-[19rem] h-[19rem] md:w-[24rem] md:h-[24rem] items-hover">
-                                <a href="{% url 'noticias:noticia' year=n.fecha.year month=n.fecha.month day=n.fecha.day id=n.id %}">
+                            <article class="relative aspect-auto w-full h-full items-hover max-h-[460px]">
+                                <a href="{% url 'noticias:noticia' year=n.fecha.year month=n.fecha.month day=n.fecha.day id=n.id %}" class="flex flex-col w-full h-full max-h-[460px]">
                                     {% include 'components/UltimaNoticia.html' %}
                                 </a>
                             </article>
@@ -24,8 +26,11 @@
                     {% endif %}
                 </section>
             </li>
-            <li class="w-full h-full border">
-
+            <li class="w-full h-full flex justify-center items-center">
+                3
+            </li>
+            <li class="w-full h-full flex justify-center items-center">
+                4
             </li>
         </ul>
     </div>

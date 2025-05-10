@@ -1,12 +1,24 @@
 {% load static %}
 
-<div class="w-full h-[13rem] md:h-[18rem]">
-    <img class="w-full h-full object-top object-cover aspect-auto" 
-        src="{{ n.archivos.first.archivo.url }}"
-        alt="Imagen de la noticia {{ n.titulo }}" loading="lazy">
-</div>
-<small class="absolute top-0 right-0 px-2 py-1 lowercase bg-primary text-white text-[10px] md:text-[12px]"> {{ n.formatted_fecha }} </small>
-<div class="grid py-2">
+<div class="w-full h-full flex-grow aspect-square">
+    {% if n.archivos.first.es_imagen %}
+        {% if n.archivos.first.archivo %}
+            <img class="w-full h-full object-top object-cover aspect-square" 
+                src="{{ n.archivos.first.archivo.url }}" 
+                alt="Imagen de la noticia {{ n.titulo }}" loading="lazy" width="200" height="200">
+        {% elif n.archivos.first.archivo_url %}
+            <img class="w-full h-full object-top object-cover aspect-square" 
+                src="{{ n.archivos.first.archivo_url }}" 
+                alt="Imagen de la noticia {{ n.titulo }}" loading="lazy" width="200" height="200">
+        {% endif %}
+    {% else%}
+        <img class="w-full h-full object-top object-cover aspect-square"
+            src="{% static 'images/ineterpo.webp' %}"
+            alt="Imagen de la noticia {{ n.titulo }}" loading="lazy" width="200" height="200">
+    {% endif %}
+    </div>
+<small class="absolute top-0 right-0 px-2 py-1 lowercase bg-primary text-white text-[10px] md:text-[12px] font-source font-medium"> {{ n.formatted_fecha }} </small>
+<div class="flex flex-col py-2 flex-grow min-h-[98.77px] md:min-h-[112px]">
     <p class="text-[9.5px] font-source font-medium tracking-wider uppercase text-red-700 lg:text-[12px]">{{ n.tipo }}</p>
     <h1 class="text-black font-playfair font-semibold truncate text-[1rem] md:text-[19px]">{{ n.titulo }}</h1>
     <div class="prose line-clamp-2 max-w-none leading-[1.2] text-[0.875rem] md:text-[1rem] font-source font-light text-black/80">{{ n.descripcion|safe }}</div>
