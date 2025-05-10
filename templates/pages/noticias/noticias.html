@@ -10,16 +10,16 @@
             <form method="get" class="relative w-full max-w-[600px] mx-auto mt-4 font-source rounded-[10px] overflow-hidden">
                 <input type="text" name="search" placeholder="Buscar" class="w-full py-2 px-4 my-auto rounded-[10px] border border-white focus-within:border-secundary" value="{{ request.GET.search }}">
                 <button type="submit" class="absolute bg-primary h-full px-2 right-0">
-                    <img src="{% static 'icons/header/buscar.webp' %}" alt="Buscar" class="w-[14px] h-[14px] md:w-[18px] md:h-[18px] my-auto">
+                    <img src="{% static 'icons/header/buscar.webp' %}" alt="Buscar" class="w-[14px] h-[14px] md:w-[18px] md:h-[18px] my-auto" width="18" height="18">
                 </button>
             </form>
         </div>
     </section>
     {% if noticias %}
-    <section class="grid grid-cols-2 gap-4 aspect-auto place-content-end place-items-center md:gap-y-4 md:gap-x-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+    <section class="grid grid-cols-2 gap-4 aspect-auto px-4 place-content-end place-items-center md:gap-y-4 md:gap-x-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {% for noticia in noticias %}
-            <article class="m-auto relative aspect-auto {% if forloop.first %}col-span-2 row-span-2 w-[19rem] h-[19rem] md:w-[24rem] md:h-[24rem] lg:w-[28rem] lg:h-[28rem]{% else %}col-span-1 row-span-1 w-[9.5rem] h-[12rem] md:w-[12rem] md:h-[13rem] lg:w-[14rem] lg:h-[15rem]{% endif %} items-hover">
-                   <a href="{% url 'noticias:noticia' year=noticia.fecha.year month=noticia.fecha.month day=noticia.fecha.day id=noticia.id %}">
+            <article class="m-auto w-full h-full relative aspect-auto {% if forloop.first %}col-span-2 row-span-2 {% else %}col-span-1 row-span-1{% endif %} items-hover">
+                   <a href="{% url 'noticias:noticia' year=noticia.fecha.year month=noticia.fecha.month day=noticia.fecha.day id=noticia.id %}" class="flex flex-col h-full w-full">
                     {% if forloop.first %}
                         {% include 'components/PrimerNoticiasSection.html' %}
                     {% else %}

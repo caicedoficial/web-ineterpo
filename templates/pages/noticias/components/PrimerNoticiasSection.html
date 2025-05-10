@@ -1,19 +1,25 @@
 <!-- Primer Noticia Section -->
 {% load static %}
 
-<div class="w-full h-[13rem] md:h-[18rem] lg:h-[22rem]">
+<div class="w-full h-full flex-grow aspect-square">
 {% if noticia.archivos.first.es_imagen %}
-    <img class="w-full h-full object-top object-cover aspect-auto" 
-        src="{{ noticia.archivos.first.archivo.url }}" 
-        alt="Imagen de la noticia {{ noticia.titulo }}" loading="lazy">
+    {% if noticia.archivos.first.archivo %}
+        <img class="w-full h-full object-top object-cover aspect-square" 
+            src="{{ noticia.archivos.first.archivo.url }}" 
+            alt="Imagen de la noticia {{ noticia.titulo }}" loading="lazy" width="200" height="200">
+    {% elif noticia.archivos.first.archivo_url %}
+        <img class="w-full h-full object-top object-cover aspect-square" 
+            src="{{ noticia.archivos.first.archivo_url }}" 
+            alt="Imagen de la noticia {{ noticia.titulo }}" loading="lazy" width="200" height="200">
+    {% endif %}
 {% else%}
-    <img class="w-full h-full object-top object-cover aspect-auto"
+    <img class="w-full h-full object-top object-cover aspect-square"
         src="{% static 'images/ineterpo.webp' %}"
-        alt="Imagen de la noticia {{ noticia.titulo }}" loading="lazy">
+        alt="Imagen de la noticia {{ noticia.titulo }}" loading="lazy" width="200" height="200">
 {% endif %}
 </div>
-<small class="absolute bg-primary px-3 py-2 text-white top-0 right-0 lowercase">{{ noticia.formatted_fecha }}</small>
-<div class="grid py-2">
+<small class="absolute bg-primary px-3 py-2 text-white top-0 right-0 lowercase font-source font-medium">{{ noticia.formatted_fecha }}</small>
+<div class="flex flex-col py-2 flex-grow min-h-[98.77px] md:min-h-[112px]">
     <p class="text-[12px] text-red-700 font-source font-medium tracking-wider uppercase">{{ noticia.tipo }}</p>
     <h1 class="text-[1.1rem] md:text-[20px] truncate font-playfair font-semibold text-black">{{ noticia.titulo }}</h1>
     <div class="prose line-clamp-2 max-w-none leading-[1.2] text-[0.875rem] md:text-base font-sourceLight text-black/80">{{ noticia.descripcion|safe }}</div>

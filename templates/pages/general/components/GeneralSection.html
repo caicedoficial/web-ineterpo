@@ -1,26 +1,26 @@
 {% load static %}
 <!-- General Section -->
-<div class="w-full 
-    {% if objeto.tipo %}
-        h-[6.5rem] md:h-[8rem] lg:h-[9rem]
-    {% else %}
-        h-[7rem] md:h-[9rem] lg:h-[10.5rem]
-    {% endif %}
-    ">
+<div class="w-full h-full flex-grow aspect-square">
     {% if objeto.archivos.first.es_imagen %}
-        <img class="w-full h-full object-top object-cover aspect-auto"
-            src="{{ objeto.archivos.first.archivo.url }}"
-            alt="Imagen de la noticia {{ objeto.titulo }}" loading="lazy">
+        {% if objeto.archivos.first.archivo %}
+            <img class="w-full h-full object-top object-cover aspect-square" 
+                src="{{ objeto.archivos.first.archivo.url }}" 
+                alt="Imagen de la objeto {{ objeto.titulo }}" loading="lazy" width="200" height="200">
+        {% elif objeto.archivos.first.archivo_url %}
+            <img class="w-full h-full object-top object-cover aspect-square" 
+                src="{{ objeto.archivos.first.archivo_url }}" 
+                alt="Imagen de la objeto {{ objeto.titulo }}" loading="lazy" width="200" height="200">
+        {% endif %}
     {% else%}
-        <img class="w-full h-full object-top object-cover aspect-auto"
+        <img class="w-full h-full object-top object-cover aspect-square"
             src="{% static 'images/ineterpo.webp' %}"
-            alt="Imagen de la noticia {{ objeto.titulo }}" loading="lazy">
+            alt="Imagen de la objeto {{ objeto.titulo }}" loading="lazy" width="200" height="200">
     {% endif %}
 </div>
-<small class="absolute top-0 right-0 px-2 py-1 lowercase bg-primary text-white text-[10px] md:text-[12px]">{{ objeto.formatted_fecha }}</small>
-<div class="grid py-2">
+<small class="absolute top-0 right-0 px-2 py-1 lowercase bg-primary text-white text-[10px] md:text-[12px] font-source font-medium">{{ objeto.formatted_fecha }}</small>
+<div class="flex flex-col flex-grow py-2 min-h-[87.48px] md:min-h-[92.63px] lg:min-h-[100.88px]">
     {% if objeto.tipo %}
-        <p class="text-[9.5px] text-red-700 uppercase font-source font-extralight tracking-wider lg:text-[12px]">{{ objeto.tipo }} - {{ noticia.jornada }}</p>
+        <p class="text-[9.5px] text-red-700 uppercase font-source font-extralight tracking-wider lg:text-[12px]">{{ objeto.tipo }}</p>
     {% endif %}
     <h1 class="text-black font-playfair truncate text-[14px] font-bold lg:text-[19px]">{{ objeto.titulo }}</h1>
     <div class="prose line-clamp-2 max-w-none leading-[1.2] font-source font-light text-black/80">{{ objeto.descripcion|safe }}</div>
