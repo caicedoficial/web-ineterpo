@@ -19,7 +19,7 @@
     {% if objetos %}
         <section class="grid grid-cols-2 gap-4 md:gap-y-6 md:gap-x-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             {% for objeto in objetos %}
-                <article class="m-auto w-full relative aspect-auto items-hover">
+                <article class="m-auto w-full relative aspect-auto items-hover backdrop-blur-sm">
                     <a href="{% url 'objeto_detalle' year=objeto.fecha.year month=objeto.fecha.month day=objeto.fecha.day id=objeto.id modelo=modelo %}" class="flex flex-col w-full h-full">
                         {% include 'components/GeneralSection.html' %}
                     </a>
